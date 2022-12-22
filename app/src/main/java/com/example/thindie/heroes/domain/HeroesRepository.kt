@@ -6,14 +6,12 @@ interface HeroesRepository {
 
     fun getFraction(fraction: Fraction): List<Monster>
 
-    fun acceptMonster(): Monster
+    fun acceptMonster(name : String): Monster
 
-    fun calculateGrowth(
+    fun calculateGrowthHealth(
         week: Week,
-        populationGiver: PopulationGiver,
         list: List<Monster>
     ): HealthPoints
 
-    fun accumulateHealthPoints(healthPoints : HealthPoints): HealthPoints
-
+    fun accumulateHealthPoints(vararg healthPoints: HealthPoints): HealthPoints
 }

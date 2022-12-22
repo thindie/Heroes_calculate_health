@@ -8,7 +8,7 @@ class GrowthMapper {
         week: Week,
     ): HealthPoints {
         return HealthPoints(
-            dwelling.monster.growth
+            dwelling.growth
                     * week.weekNumber
                     * PopulationGiver.multiplier(dwelling::class.java)
         )

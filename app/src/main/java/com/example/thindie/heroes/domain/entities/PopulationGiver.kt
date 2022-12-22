@@ -2,16 +2,16 @@ package com.example.thindie.heroes.domain.entities
 
 class PopulationGiver {
     companion object {
-        const val FORT = 1.0
-        const val CITADEL = 1.2
-        const val CASTLE = 1.5
+        const val FORT = 1
+        const val CITADEL = 1.5
+        const val CASTLE = 2
         fun multiplier(any: Any) : Int {
             when (any) {
-                is Dwelling -> {}
-                is Monster -> {}
+                is Dwelling -> {return  any.growth * FORT}
+                is Monster -> {return any.growth * CASTLE}
                 else -> {}
             }
-            return 1
+            return FORT
         }
     }
 }
