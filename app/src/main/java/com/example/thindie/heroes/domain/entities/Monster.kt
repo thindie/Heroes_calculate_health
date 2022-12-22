@@ -11,6 +11,7 @@ data class Monster (
     val cost: Int,
     val speed: Int,
     val fraction: Fraction,
-    val level: MonsterLevel
+    val level: MonsterLevel,
+    var IMG_url: String?
 )
 
