@@ -9,12 +9,10 @@ import com.example.thindie.heroes.domain.entities.Week
 class CalculateGrowthUseCase(private val heroesRepository: HeroesRepository) {
     fun calculateGrowth(
         week: Week,
-        populationGiver: PopulationGiver,
         list: List<Monster>
     ): HealthPoints {
-        return heroesRepository.calculateGrowth(
+        return heroesRepository.calculateGrowthHealth(
             week,
-            populationGiver,
             list
         )
     }
