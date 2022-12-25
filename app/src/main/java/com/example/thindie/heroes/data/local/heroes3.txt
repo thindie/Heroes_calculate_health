@@ -1,0 +1,126 @@
+Pikeman	https://heroes.thelazy.net/images/a/a6/Pikeman_portrait.gif	1	4	5	1	3	10	4	14	80	60 Gold	 	Immune to jousting
+Halberdier https://heroes.thelazy.net/images/2/2a/Halberdier_portrait.gif	1+	6	5	2	3	10	5	14	115	75 Gold	 	Immune to jousting
+Archer  https://heroes.thelazy.net/images/8/83/Archer_portrait.gif	2	6	3	2	3	10	4	9	126	100 Gold	 	Ranged (12 shots)
+Marksman https://heroes.thelazy.net/images/2/26/Marksman_portrait.gif	2+	6	3	2	3	10	6	9	184	150 Gold	 	Ranged (24 shots), Double attack
+Griffin https://heroes.thelazy.net/images/d/df/Griffin_portrait.gif	3	8	8	3	6	25	6	7	351	200 Gold	 	Flying, Two retaliations
+RoyalGriffin https://heroes.thelazy.net/images/5/5c/Royal_Griffin_portrait.gif	3+	9	9	3	6	25	9	7	448	240 Gold	 	Flying, Unlimited retaliations
+Swordsman https://heroes.thelazy.net/images/e/e9/Swordsman_portrait.gif	4	10	12	6	9	35	5	4	445	300 Gold	 	
+Crusader https://heroes.thelazy.net/images/2/23/Crusader_portrait.gif	4+	12	12	7	10	35	6	4	588	400 Gold	 	Double attack
+Monk https://heroes.thelazy.net/images/d/d6/Monk_portrait.gif	5	12	7	10	12	30	5	3	485	400 Gold	 	Ranged (12 shots)
+Zealot https://heroes.thelazy.net/images/f/f2/Zealot_portrait.gif	12	10	10	12	30	7	3	750	450 Gold	 	Ranged (24 shots), No melee penalty
+Cavalier https://heroes.thelazy.net/images/5/54/Cavalier_portrait.gif	15	15	15	25	100	7	2	1946	1000 Gold	 	Jousting
+Champion https://heroes.thelazy.net/images/e/ef/Champion_portrait.gif	16	16	20	25	100	9	2	2100	1200 Gold	 	Jousting
+Angel https://heroes.thelazy.net/images/b/ba/Angel_portrait.gif	20	20	50	50	200	12	1	5019	3000 Gold	, 1 Gem 	Flying, Hates Devils and Arch Devils, Morale +1 to the whole army
+Archangel https://heroes.thelazy.net/images/7/79/Archangel_portrait.gif	7+	30	30	50	50	250	18	1	8776	5000 Gold	, 3 Gem 	Flying, Hates Devils and Arch Devils, Resurrection, Morale +1 to the whole army
+Centaur https://heroes.thelazy.net/images/0/08/Centaur_portrait.gif	1	5	3	2	3	8	6	14	100	70 Gold	 	
+CentaurCaptain https://heroes.thelazy.net/images/2/20/Centaur_Captain_portrait.gif	1+	6	3	2	3	10	8	14	138	90 Gold	 	
+Dwarf https://heroes.thelazy.net/images/f/f5/Dwarf_portrait.gif	2	6	7	2	4	20	3	8	138	120 Gold	 	Resistance +20%
+BattleDwarf https://heroes.thelazy.net/images/d/d6/Battle_Dwarf_portrait.gif	2+	7	7	2	4	20	5	8	209	150 Gold	 	Resistance +40%
+WoodElf https://heroes.thelazy.net/images/5/5d/Wood_Elf_portrait.gif	3	9	5	3	5	15	6	7	234	200 Gold	 	Ranged (24 shots)
+GrandElf https://heroes.thelazy.net/images/b/b9/Grand_Elf_portrait.gif	3+	9	5	3	5	15	7	7	331	225 Gold	 	Ranged (24 shots), Double attack
+Pegasus https://heroes.thelazy.net/images/1/1f/Pegasus_portrait.gif	4	9	8	5	9	30	8	5	518	250 Gold	 	Flying, Magic damper
+SilverPegasus https://heroes.thelazy.net/images/c/c3/Silver_Pegasus_portrait.gif	4+	9	10	5	9	30	12	5	532	275 Gold	 	Flying, Magic damper
+DendroidGuard https://heroes.thelazy.net/images/8/8e/Dendroid_Guard_portrait.gif	5	9	12	10	14	55	3	3	517	350 Gold	 	Binding
+DendroidSoldier https://heroes.thelazy.net/images/0/08/Dendroid_Soldier_portrait.gif	5+	9	12	10	14	65	4	3	803	425 Gold	 	Binding
+Unicorn https://heroes.thelazy.net/images/e/ed/Unicorn_portrait.gif	6	15	14	18	22	90	7	2	1806	850 Gold	 	Blind, Aura of Resistance +20%
+WarUnicorn https://heroes.thelazy.net/images/6/65/War_Unicorn_portrait.gif	6+	15	14	18	22	110	9	2	2030	950 Gold	 	Blind, Aura of Resistance +20%
+GreenDragon https://heroes.thelazy.net/images/7/74/Green_Dragon_portrait.gif	7	18	18	40	50	180	10	1	4872	2400 Gold	, 1 Crystal 	Dragon, Flying, Breath attack, 1-3 lvl spells immunity
+GoldDragon https://heroes.thelazy.net/images/7/75/Gold_Dragon_portrait.gif	7+	27	27	40	50	250	16	1	8613	4000 Gold	, 2 Crystal 	Dragon, Flying, Breath attack, 1-4 lvl spells immunity
+Gremlin https://heroes.thelazy.net/images/4/47/Gremlin_portrait.gif	1	3	3	1	2	4	4	16	44	30 Gold	 	
+MasterGremlin https://heroes.thelazy.net/images/7/76/Master_Gremlin_portrait.gif	1+	4	4	1	2	4	5	16	66	40 Gold	 	Ranged (8 shots)
+StoneGargoyle https://heroes.thelazy.net/images/c/cf/Stone_Gargoyle_portrait.gif	2	6	6	2	3	16	6	9	165	130 Gold	 	Unliving, Flying
+ObsidianGargoyle https://heroes.thelazy.net/images/2/23/Obsidian_Gargoyle_portrait.gif	2+	7	7	2	3	16	9	9	201	160 Gold	 	Unliving, Flying
+StoneGolem https://heroes.thelazy.net/images/2/23/Obsidian_Gargoyle_portrait.gif	3	7	10	4	5	30	3	6	250	150 Gold	 	Unliving, Spell Damage Resistance +50%
+IronGolem https://heroes.thelazy.net/images/f/f8/Iron_Golem_portrait.gif	3+	9	10	4	5	35	5	6	412	200 Gold	 	Unliving, Spell Damage Resistance +75%
+Mage https://heroes.thelazy.net/images/f/f8/Iron_Golem_portrait.gif	4	11	8	7	9	25	5	4	570	350 Gold	 	Ranged (24 shots), No melee penalty, No obstacle penalty, Spells cost -2 sp
+ArchMage https://heroes.thelazy.net/images/4/43/Arch_Mage_portrait.gif	4+	12	9	7	9	30	7	4	680	450 Gold	 	Ranged (24 shots), No melee penalty, No obstacle penalty, Spells cost -2 sp
+Genie https://heroes.thelazy.net/images/2/29/Genie_portrait.gif	5	12	12	13	16	40	7	3	884	550 Gold	 	Flying, Hates Efreet and Efreet Sultans
+MasterGenie https://heroes.thelazy.net/images/f/fe/Master_Genie_portrait.gif	5+	12	12	13	16	40	11	3	942	600 Gold	 	Flying, Spellcaster, Hates Efreet and Efreet Sultans
+Naga https://heroes.thelazy.net/images/2/2c/Naga_portrait.gif	6	16	13	20	20	110	5	2	2016	1100 Gold	 	No enemy retaliation
+NagaQueen https://heroes.thelazy.net/images/b/ba/Naga_Queen_portrait.gif	6+	16	13	30	30	110	7	2	2840	1600 Gold	 	No enemy retaliation
+Giant https://heroes.thelazy.net/images/1/14/Giant_portrait.gif	7	19	16	40	60	150	7	1	3718	2000 Gold	, 1 Gem 	Immunity to Mind spells
+Titan https://heroes.thelazy.net/images/5/50/Titan_portrait.gif	7+	24	24	40	60	300	11	1	7500	5000 Gold	, 2 Gem 	Ranged (24 shots), No melee penalty, Immunity to Mind spells, Hates Black Dragons
+Imp https://heroes.thelazy.net/images/0/05/Imp_portrait.gif	1	2	3	1	2	4	5	15	50	50 Gold	 	
+Familiar https://heroes.thelazy.net/images/e/ee/Familiar_portrait.gif	1+	4	4	1	2	4	7	15	60	60 Gold	 	Magic channel
+Gog https://heroes.thelazy.net/images/2/2d/Gog_portrait.gif	2	6	4	2	4	13	4	8	159	125 Gold	 	Ranged (12 shots)
+Magog https://heroes.thelazy.net/images/2/2d/Gog_portrait.gif	2+	7	4	2	4	13	6	8	240	175 Gold	 	Ranged (24 shots), Fireball attack
+HellHound https://heroes.thelazy.net/images/9/99/Hell_Hound_portrait.gif	3	10	6	2	7	25	7	5	357	200 Gold	 	
+Cerberus https://heroes.thelazy.net/images/4/4b/Cerberus_portrait.gif	3+	10	8	2	7	25	8	5	392	250 Gold	 	No enemy retaliation, 3-headed attack
+Demon https://heroes.thelazy.net/images/4/4b/Cerberus_portrait.gif	4	10	10	7	9	35	5	4	445	250 Gold	 	
+HornedDemon https://heroes.thelazy.net/images/4/4b/Cerberus_portrait.gif	4+	10	10	7	9	40	6	4	480	270 Gold	 	
+PitFiend https://heroes.thelazy.net/images/e/e0/Pit_Fiend_portrait.gif	5	13	13	13	17	45	6	3	765	500 Gold	 	
+PitLord https://heroes.thelazy.net/images/1/16/Pit_Lord_portrait.gif	5+	13	13	13	17	45	7	3	1224	700 Gold	 	Summons demons
+Efreeti https://heroes.thelazy.net/images/b/be/Efreeti_portrait.gif	6	16	12	16	24	90	9	2	1670	900 Gold	 	Flying, Fire immunity, Hates Genies and Master Genies
+EfreetSultan https://heroes.thelazy.net/images/9/9a/Efreet_Sultan_portrait.gif	6+	16	14	16	24	90	13	2	1848	1100 Gold	 	Flying, Fire shield, Fire immunity, Hates Genies and Master Genies
+Devil https://heroes.thelazy.net/images/3/33/Devil_portrait.gif	7	19	21	30	40	160	11	1	5101	2700 Gold	, 1 Mercury 	Flying, No enemy retaliation, Luck -1, Hates Angels and Archangels
+ArchDevil https://heroes.thelazy.net/images/7/7c/Arch_Devil_portrait.gif	7+	26	28	30	40	200	17	1	7115	4500 Gold	, 2 Mercury 	Flying, No enemy retaliation, Luck -1, Hates Angels and Archangels
+Skeleton https://heroes.thelazy.net/images/1/15/Skeleton_portrait.gif	1	5	4	1	3	6	4	12	60	60 Gold	 	Undead
+SkeletonWarrior https://heroes.thelazy.net/images/7/73/Skeleton_Warrior_portrait.gif	1+	6	6	1	3	6	5	12	85	70 Gold	 	Undead
+WalkingDead https://heroes.thelazy.net/images/a/a1/Walking_Dead_portrait.gif	2	5	5	2	3	15	3	8	98	100 Gold	 	Undead
+Zombie https://heroes.thelazy.net/images/a/a1/Walking_Dead_portrait.gif	2+	5	5	2	3	20	4	8	128	125 Gold	 	Undead, Disease
+Wight https://heroes.thelazy.net/images/5/59/Wight_portrait.gif	3	7	7	3	5	18	5	7	252	200 Gold	 	Undead, Flying, Regeneration
+Wraith https://heroes.thelazy.net/images/0/07/Wraith_portrait.gif	3+	7	7	3	5	18	7	7	315	230 Gold	 	Undead, Flying, Regeneration, Mana drain
+Vampire https://heroes.thelazy.net/images/a/a0/Vampire_portrait.gif	4	10	9	5	8	30	6	4	555	360 Gold	 	Undead, Flying, No enemy retaliation
+VampireLord https://heroes.thelazy.net/images/a/a0/Vampire_portrait.gif	4+	10	10	5	8	40	9	4	783	500 Gold	 	Undead, Flying, No enemy retaliation, Life drain
+Lich https://heroes.thelazy.net/images/c/cf/Lich_portrait.gif	5	13	10	11	13	30	6	3	848	550 Gold	 	Ranged (12 shots), Undead, Death cloud
+PowerLich https://heroes.thelazy.net/images/8/8b/Power_Lich_portrait.gif	5+	13	10	11	15	40	7	3	1079	600 Gold	 	Ranged (24 shots), Undead, Death cloud
+BlackKnight https://heroes.thelazy.net/images/4/44/Black_Knight_portrait.gif	6	16	16	15	30	120	7	2	2087	1200 Gold	 	Undead, Curse
+DreadKnight https://heroes.thelazy.net/images/b/bc/Dread_Knight_portrait.gif	6+	18	18	15	30	120	9	2	2382	1500 Gold	 	Undead, Curse, Death blow
+BoneDragon https://heroes.thelazy.net/images/b/bc/Dread_Knight_portrait.gif	7	17	15	25	50	150	9	1	3388	1800 Gold	 	Dragon, Undead, Flying, Morale -1
+GhostDragon https://heroes.thelazy.net/images/f/f0/Ghost_Dragon_portrait.gif	7+	19	17	25	50	200	14	1	4696	3000 Gold	, 1 Mercury 	Dragon, Undead, Flying, Morale -1, Aging
+Troglodyte https://heroes.thelazy.net/images/0/0c/Troglodyte_portrait.gif	1	4	3	1	3	5	4	14	59	50 Gold	 	Immune to Blinding
+InfernalTroglodyte https://heroes.thelazy.net/images/f/fb/Infernal_Troglodyte_portrait.gif	1+	5	4	1	3	6	5	14	84	65 Gold	 	Immune to Blinding
+Harpy https://heroes.thelazy.net/images/0/0c/Troglodyte_portrait.gif	2	6	5	1	4	14	6	8	154	130 Gold	 	Flying, Strike and return
+HarpyHag https://heroes.thelazy.net/images/0/0c/Troglodyte_portrait.gif	2+	6	6	1	4	14	9	8	238	170 Gold	 	Flying, Strike and return, No enemy retaliation
+Beholder https://heroes.thelazy.net/images/3/37/Beholder_portrait.gif	3	9	7	3	5	22	5	7	336	250 Gold	 	Ranged (12 shots), No melee penalty
+EvilEye https://heroes.thelazy.net/images/e/e3/Evil_Eye_portrait.gif	3+	10	8	3	5	22	7	7	367	280 Gold	 	Ranged (24 shots), No melee penalty
+Medusa https://heroes.thelazy.net/images/3/34/Medusa_portrait.gif	4	9	9	6	8	25	5	4	517	300 Gold	 	Ranged (4 shots), No melee penalty, Petrify
+MedusaQueen https://heroes.thelazy.net/images/3/34/Medusa_portrait.gif	4+	10	10	6	8	30	6	4	577	330 Gold	 	Ranged (8 shots), No melee penalty, Petrify
+Minotaur https://heroes.thelazy.net/images/9/99/Minotaur_portrait.gif	5	14	12	12	20	50	6	3	835	500 Gold	 	Positive Morale
+MinotaurKing https://heroes.thelazy.net/images/4/4b/Minotaur_King_portrait.gif	5+	15	15	12	20	50	8	3	1068	575 Gold	 	Positive Morale
+Manticore https://heroes.thelazy.net/images/3/30/Manticore_portrait.gif	6	15	13	14	20	80	7	2	1547	850 Gold	 	Flying
+Scorpicore https://heroes.thelazy.net/images/c/cb/Scorpicore_portrait.gif	6+	16	14	14	20	80	11	2	1589	1050 Gold	 	Flying, Paralyze
+RedDragon https://heroes.thelazy.net/images/8/80/Red_Dragon_portrait.gif	7	19	19	40	50	180	11	1	4702	2500 Gold	, 1 Sulfur 	Dragon, Flying, Breath attack, 1-3 lvl spells immunity
+BlackDragon https://heroes.thelazy.net/images/9/99/Black_Dragon_portrait.gif	7+	25	25	40	50	300	15	1	8721	4000 Gold	, 2 Sulfur 	Dragon, Flying, Breath attack, Magic immunity, Hates Titans
+Goblin Goblin	https://heroes.thelazy.net/images/0/05/Goblin_portrait.gif	1	4	2	1	2	5	5	15	60	40 Gold	 	
+Hobgoblin https://heroes.thelazy.net/images/4/43/Hobgoblin_portrait.gif	1+	5	3	1	2	5	7	15	78	50 Gold	 	
+WolfRider https://heroes.thelazy.net/images/a/a7/Wolf_Rider_portrait.gif	2	7	5	2	4	10	6	9	130	100 Gold	 	
+WolfRaider https://heroes.thelazy.net/images/0/05/Wolf_Raider_portrait.gif	2+	8	5	3	4	10	8	9	203	140 Gold	 	Double attack
+Orc https://heroes.thelazy.net/images/7/71/Orc_portrait.gif	3	8	4	2	5	15	4	7	192	150 Gold	 	Ranged (12 shots)
+OrcChieftain https://heroes.thelazy.net/images/4/4c/Orc_Chieftain_portrait.gif	3+	8	4	2	5	20	5	7	240	165 Gold	 	Ranged (24 shots)
+Ogre https://heroes.thelazy.net/images/6/60/Ogre_portrait.gif	4	13	7	6	12	40	4	4	416	300 Gold	 	
+OgreMage https://heroes.thelazy.net/images/a/ac/Ogre_Mage_portrait.gif	4+	13	7	6	12	60	5	4	672	400 Gold	 	Cast Bloodlust x3
+Roc https://heroes.thelazy.net/images/7/71/Roc_portrait.gif	5	13	11	11	15	60	7	3	1027	600 Gold	 	Flying
+Thunderbird https://heroes.thelazy.net/images/3/3a/Thunderbird_portrait.gif	5+	13	11	11	15	60	11	3	1106	700 Gold	 	Flying, Lightning strike
+Cyclops https://heroes.thelazy.net/images/0/04/Cyclops_portrait.gif	6	15	12	16	20	70	6	2	1266	750 Gold	 	Ranged (16 shots), Can attack siege walls
+CyclopsKing https://heroes.thelazy.net/images/7/7a/Cyclops_King_portrait.gif	6+	17	13	16	20	70	8	2	1443	1100 Gold	 	Ranged (24 shots), Can attack siege walls
+Behemoth https://heroes.thelazy.net/images/9/9d/Behemoth_portrait.gif	7	17	17	30	50	160	6	1	3162	1500 Gold	 	Defense -40% to enemy target
+AncientBehemoth https://heroes.thelazy.net/images/3/3b/Ancient_Behemoth_portrait.gif	7+	19	19	30	50	300	9	1	6168	3000 Gold	, 1 Crystal 	Defense -80% to enemy target
+Gnoll https://heroes.thelazy.net/images/4/43/Gnoll_portrait.gif	1	3	5	2	3	6	4	12	56	50 Gold	 	
+GnollMarauder https://heroes.thelazy.net/images/2/28/Gnoll_Marauder_portrait.gif	1+	4	6	2	3	6	5	12	90	70 Gold	 	
+Lizardman https://heroes.thelazy.net/images/b/b2/Lizardman_portrait.gif	2	5	6	2	3	14	4	9	126	110 Gold	 	Ranged (12 shots)
+LizardWarrior https://heroes.thelazy.net/images/7/75/Lizard_Warrior_portrait.gif	2+	6	8	2	5	15	5	9	156	140 Gold	 	Ranged (24 shots)
+SerpentFly https://heroes.thelazy.net/images/7/75/Lizard_Warrior_portrait.gif	3	7	9	2	5	20	9	8	268	220 Gold	 	Flying, Dispel
+DragonFly https://heroes.thelazy.net/images/0/02/Dragon_Fly_portrait.gif	3+	8	10	2	5	20	13	8	312	240 Gold	 	Flying, Dispel, Weakness
+Basilisk https://heroes.thelazy.net/images/5/57/Basilisk_portrait.gif	4	11	11	6	10	35	5	4	552	325 Gold	 	Petrify
+GreaterBasilisk https://heroes.thelazy.net/images/2/27/Greater_Basilisk_portrait.gif	4+	12	12	6	10	40	7	4	714	400 Gold	 	Petrify
+Gorgon https://heroes.thelazy.net/images/2/2d/Gorgon_portrait.gif	5	10	14	12	16	70	5	3	890	525 Gold	 	
+MightyGorgon https://heroes.thelazy.net/images/5/5d/Mighty_Gorgon_portrait.gif	5+	11	16	12	16	70	6	3	1028	600 Gold	 	Death stare 10% chance/unit
+Wyvern https://heroes.thelazy.net/images/0/0c/Wyvern_portrait.gif	6	14	14	14	18	70	7	2	1350	800 Gold	 	Flying
+WyvernMonarch https://heroes.thelazy.net/images/c/c0/Wyvern_Monarch_portrait.gif	6+	14	14	18	22	70	11	2	1518	1100 Gold	 	Flying, Poison
+Hydra https://heroes.thelazy.net/images/d/d0/Hydra_portrait.gif	7	16	18	25	45	175	5	1	4120	2200 Gold	 	No enemy retaliation, Attack all adjacent enemies
+ChaosHydra https://heroes.thelazy.net/images/f/f5/Chaos_Hydra_portrait.gif	7+	18	20	25	45	250	7	1	5931	3500 Gold	, 1 Sulfur 	No enemy retaliation, Attack all adjacent enemies
+Pixie https://heroes.thelazy.net/images/2/2d/Pixie_portrait.gif	1	2	2	1	2	3	7	20	55	25 Gold	 	Flying
+Sprite https://heroes.thelazy.net/images/4/47/Sprite_portrait.gif	1+	2	2	1	3	3	9	20	95	30 Gold	 	Flying, No enemy retaliation
+AirElemental https://heroes.thelazy.net/images/4/47/Sprite_portrait.gif	2	9	9	2	8	25	7	6	356	250 Gold	 	Elemental, Lightning and Armageddon vulnerability, Immune to Meteor Shower**, +100% to basic damage to Earth and Magma Elementals**
+StormElemental https://heroes.thelazy.net/images/4/47/Sprite_portrait.gif	2+	9	9	2	8	25	8	6	486	275 Gold	 	Ranged (24 shots), Elemental, Lightning and Armageddon vulnerability, Immune to Meteor Shower**, +100% to basic damage to Earth and Magma Elementals**, Casts Protection from Air**
+WaterElemental https://heroes.thelazy.net/images/2/2c/Water_Elemental_portrait.gif	3	8	10	3	7	30	5	6	315	300 Gold	 	Elemental, Ice immunity, Vulnerable to Fireball, Inferno and Armageddon, +100% to basic damage to Fire and Energy Elementals**
+IceElemental https://heroes.thelazy.net/images/e/e3/Ice_Elemental_portrait.gif	3+*	8	10	3	7	30	6	6	380	375 Gold	 	Ranged (24 shots), Elemental, Ice immunity, Vulnerable to Fireball, Inferno and Armageddon, +100% to basic damage to Fire and Energy Elementals**, Casts Protection from Water**
+FireElemental https://heroes.thelazy.net/images/0/01/Fire_Elemental_portrait.gif	4	10	8	4	6	35	6	5	345	350 Gold	 	Elemental, Ice vulnerability, Fire immunity, +100% to basic damage to Water and Ice Elementals**
+EnergyElemental https://heroes.thelazy.net/images/5/5a/Energy_Elemental_portrait.gif	4+*	12	8	4	6	35	8	5	470	400 Gold	 	Elemental, Flying, Ice vulnerability, Fire immunity, +100% to basic damage to Water and Ice Elementals**, Casts Protection from Fire
+EarthElemental https://heroes.thelazy.net/images/b/b1/Earth_Elemental_portrait.gif	5	10	10	4	8	40	4	4	330	400 Gold	 	Elemental, Meteor Shower vulnerability, Lightning and Armageddon immunity**, +100% to basic damage to Air and Storm Elementals**
+MagmaElemental https://heroes.thelazy.net/images/7/7e/Magma_Elemental_portrait.gif	5+*	11	11	6	10	40	6	4	490	500 Gold	 	Elemental, Meteor Shower vulnerability**, Lightning and Armageddon immunity**, +100% to basic damage to Air and Storm Elementals**, Casts Protection from Earth
+PsychicElemental https://heroes.thelazy.net/images/f/f5/Psychic_Elemental_portrait.gif	6	15	13	10	20	75	7	2	1669	750 Gold	 	Elemental, Attacks all adjacent enemies without retaliation, -50% damage to creatures with Mind Immunity
+MagicElemental https://heroes.thelazy.net/images/f/f5/Psychic_Elemental_portrait.gif	6+	15	13	15	25	80	9	2	2012	800 Gold	 	Elemental, Attacks all adjacent enemies without retaliation, Magic immunity, -50% damage to creatures with Magic Immunity
+Firebird https://heroes.thelazy.net/images/b/b1/Firebird_portrait.gif	7	18	18	30	40	150	15	2	4547	1500 Gold	 	Flying, Breath attack, Fire immunity
+Phoenix https://heroes.thelazy.net/images/b/b8/Phoenix_portrait.gif	7+	21	18	30	40	200	21	2	6721	2000 Gold	, 1 Mercury 	Flying, Breath attack, Fire immunity, Rebirth

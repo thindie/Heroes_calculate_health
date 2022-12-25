@@ -3,6 +3,7 @@ package com.example.thindie.heroes.presentation
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.thindie.heroes.domain.entities.Fraction
 import com.example.thindie.heroes.domain.entities.Monster
@@ -16,6 +17,7 @@ import com.example.thindie.heroes.presentation.ui.theme.composables.MonsterColum
 @Composable
 fun Heroes(viewModel: HeroesViewModel) {
 
+
 }
 
 @Preview(showBackground = true)
@@ -25,7 +27,10 @@ fun HeroesPreview() {
         Column {
             HeroesSearchBar()
             FractionRow(onClick = {})
-            MonsterColumn()
+            MonsterColumn(
+                modifier = Modifier,
+                monsterList()
+            )
         }
 
     }

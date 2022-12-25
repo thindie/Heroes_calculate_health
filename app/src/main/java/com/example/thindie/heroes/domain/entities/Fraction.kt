@@ -1,5 +1,5 @@
 package com.example.thindie.heroes.domain.entities
 
 enum class Fraction {
-    CASTLE,RAMPART,TOWER,FORTRESS,CITADEL,CONFLUX,INFERNO
+    CASTLE,RAMPART,TOWER,FORTRESS,CITADEL,CONFLUX,INFERNO, DUNGEON
 }
