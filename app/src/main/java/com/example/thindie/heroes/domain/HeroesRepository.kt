@@ -4,6 +4,8 @@ import com.example.thindie.heroes.domain.entities.*
 
 interface HeroesRepository {
 
+    fun getAllCreatures() : List<Monster>
+
     fun getFraction(fraction: Fraction): List<Monster>
 
     fun acceptMonster(name : String): Monster

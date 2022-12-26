@@ -10,7 +10,7 @@ data class Monster (
     var growth: Int,
     val cost: Int,
     val speed: Int,
-    val fraction: Fraction,
+    var fraction: Fraction = Fraction.CITADEL,
     val level: MonsterLevel,
     var IMG_url: String?
 )

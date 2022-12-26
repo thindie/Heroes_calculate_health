@@ -3,6 +3,7 @@ package com.example.thindie.heroes.presentation
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.thindie.heroes.domain.entities.Fraction
@@ -16,38 +17,30 @@ import com.example.thindie.heroes.presentation.ui.theme.composables.MonsterColum
 
 @Composable
 fun Heroes(viewModel: HeroesViewModel) {
+    HeroesTheme {
+        val creatures = viewModel.allMonsters.observeAsState()
 
-
+        Column {
+            HeroesSearchBar()
+            FractionRow(onClick = {})
+            MonsterColumn(
+                modifier = Modifier,
+                creatures
+            )
+        }
+    }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun HeroesPreview() {
     HeroesTheme {
-        Column {
-            HeroesSearchBar()
-            FractionRow(onClick = {})
-            MonsterColumn(
-                modifier = Modifier,
-                monsterList()
-            )
+
         }
 
     }
-}
 
-fun monsterList(): List<Monster> {
-    val list: MutableList<Monster> = mutableListOf()
-    for (i in 1..10) {
-        list.add(
-            Monster(
-                "monster $i", i, i, i, i, i, i, i, i, Fraction.INFERNO, MonsterLevel.SIX, ""
 
-            )
-        )
-    }
-    return list
-}
 
 fun fractionList(): List<Fraction> {
 

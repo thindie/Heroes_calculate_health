@@ -26,7 +26,7 @@ fun FractionRow(
         ) {
         items(fractionList()) { fraction ->
             FractionElement(
-                fraction = Fraction.TOWER,
+                fraction = fraction,
                 modifier = modifier.padding(end = 8.dp),
                 onClick = onClick,
                 imageUrl = ""

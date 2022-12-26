@@ -4,22 +4,22 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.thindie.heroes.domain.entities.Monster
-import com.example.thindie.heroes.presentation.monsterList
 
 @Composable
 fun MonsterColumn(
     modifier: Modifier = Modifier,
-    list: List<Monster>
+    list: State<List<Monster>?>
 ) {
     LazyColumn(
         contentPadding = PaddingValues(horizontal = 16.dp),
         modifier = modifier,
 
         ) {
-        items(monsterList()) { monster ->
+        items(list.value!!) { monster ->
             MonsterCard(
                 imageUrl = monster.IMG_url!!,
                 monsterName = monster.name,

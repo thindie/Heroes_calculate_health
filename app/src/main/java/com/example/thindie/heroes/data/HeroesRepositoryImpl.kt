@@ -1,5 +1,8 @@
 package com.example.thindie.heroes.data
 
+import android.app.Application
+import com.example.thindie.heroes.data.local.FractionData
+import com.example.thindie.heroes.data.local.RawResourceReader
 import com.example.thindie.heroes.data.mappers.GrowthMapper
 import com.example.thindie.heroes.domain.HeroesRepository
 import com.example.thindie.heroes.domain.entities.Fraction
@@ -7,14 +10,20 @@ import com.example.thindie.heroes.domain.entities.HealthPoints
 import com.example.thindie.heroes.domain.entities.Monster
 import com.example.thindie.heroes.domain.entities.Week
 
-class HeroesRepositoryImpl : HeroesRepository {
+class HeroesRepositoryImpl(application: Application) : HeroesRepository {
     private val growthMapper = GrowthMapper()
-    override fun getFraction(fraction: Fraction): List<Monster> {
-        return TODO()
+    private val fractionData = FractionData(RawResourceReader(application))
+
+    override fun getAllCreatures(): List<Monster> {
+        return fractionData.getAllCreatures()
     }
 
-    override fun acceptMonster(name : String): Monster {
-        TODO("Not yet implemented")
+    override fun getFraction(fraction: Fraction): List<Monster> {
+        return fractionData.representFraction(fraction)
+    }
+
+    override fun acceptMonster(name: String): Monster {
+       return fractionData.getSingleMonsterByName(name)
     }
 
     override fun calculateGrowthHealth(
