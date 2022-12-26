@@ -8,7 +8,6 @@ import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.thindie.heroes.presentation.ui.theme.HeroesTheme
@@ -26,19 +25,19 @@ fun HeroesSearchBar(
                 contentDescription = null
             )
         },
-        colors = TextFieldDefaults.textFieldColors(
+        colors = TextFieldDefaults.textFieldColors(),
 
-        ),
         placeholder = {
-            Text (text = "Search")
+            Text(text = "Search")
         },
         modifier = modifier
             .fillMaxWidth()
             .heightIn(min = 56.dp),
 
         )
-
 }
+
+
 @Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
 @Composable
 fun SearchBarPreview() {

@@ -3,6 +3,7 @@ package com.example.thindie.heroes.presentation.ui.theme.composables
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -29,32 +30,33 @@ fun MonsterCard(
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
-            .widthIn(200.dp, 300.dp)
-            .height(52.dp)
+            .height(62.dp)
     ) {
 
         Image(
             painter =  rememberAsyncImagePainter(imageUrl),
             contentDescription = null,
-            contentScale = ContentScale.Crop,
+            contentScale = ContentScale.Fit,
             modifier = modifier
-                .size(36.dp)
+                .size(72.dp)
                 .padding(horizontal = 8.dp)
-                .clip(CircleShape)
+                .clip(RoundedCornerShape(35))
         )
         Text(
             text = monsterName,
             style = MaterialTheme.typography.headlineSmall,
             modifier = Modifier.padding(start = 8.dp, end = 10.dp)
-
         )
+        
+        Spacer(modifier = Modifier
+            .weight(1f)
+            .fillMaxHeight()
+            )
 
         Checkbox(
             checked = false,
             onCheckedChange = onCheckedChange,
             modifier = modifier
-
-                .weight(1f)
                 .padding(end = 8.dp)
 
         )
