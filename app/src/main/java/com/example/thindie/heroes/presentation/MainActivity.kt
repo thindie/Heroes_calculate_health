@@ -1,7 +1,9 @@
 package com.example.thindie.heroes.presentation
 
 import android.os.Bundle
+import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.material3.Surface
 import androidx.lifecycle.ViewModelProvider
 
 class MainActivity : AppCompatActivity() {
@@ -12,15 +14,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.allMonsters.observeForever {
-            println(it.forEach {
-                it.name
-            })
-        }
-       /* setContent {
+        setContent {
             Surface(
                 content = { Heroes(viewModel = viewModel) }
             )
-        }*/
+        }
     }
 }
