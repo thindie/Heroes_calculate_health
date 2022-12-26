@@ -1,6 +1,7 @@
 package com.example.thindie.heroes.data.local
 
 import com.example.thindie.heroes.domain.entities.Fraction
+import com.example.thindie.heroes.domain.entities.FractionPair
 import com.example.thindie.heroes.domain.entities.Monster
 
 class FractionData(fileReader: RawResourceReader) {
@@ -173,7 +174,9 @@ class FractionData(fileReader: RawResourceReader) {
                 fractionList.add(getSingleMonsterByName("Firebird"))
                 fractionList.add(getSingleMonsterByName("Phoenix"))
             }
-            Fraction.NEUTRAL -> {throw RuntimeException("Something with Fraction detecting")}
+            Fraction.NEUTRAL -> {
+                throw RuntimeException("Something with Fraction detecting")
+            }
         }
         return fractionList
     }
@@ -186,5 +189,46 @@ class FractionData(fileReader: RawResourceReader) {
         }
 
         throw RuntimeException("search single monster malfunction")
+    }
+
+    fun getFractionImage(): List<FractionPair> {
+        return listOf(
+            FractionPair(
+                Fraction.CASTLE,
+                "https://heroes.thelazy.net/images/6/63/Adventure_Map_Castle_capitol.gif"
+            ),
+            FractionPair(
+                Fraction.RAMPART,
+                "https://heroes.thelazy.net/images/c/cd/Adventure_Map_Rampart_capitol.gif"
+            ),
+            FractionPair(
+                Fraction.TOWER,
+                "https://heroes.thelazy.net/images/9/9f/Adventure_Map_Tower_capitol.gif"
+            ),
+            FractionPair(
+                Fraction.INFERNO,
+                "https://heroes.thelazy.net/images/0/03/Adventure_Map_Inferno_capitol.gif"
+            ),
+            FractionPair(
+                Fraction.NECROPOLIS,
+                "https://heroes.thelazy.net/images/7/70/Adventure_Map_Necropolis_capitol.gif"
+            ),
+            FractionPair(
+                Fraction.DUNGEON,
+                "https://heroes.thelazy.net/images/7/74/Adventure_Map_Dungeon_capitol.gif"
+            ),
+            FractionPair(
+                Fraction.CITADEL,
+                "https://heroes.thelazy.net/images/5/50/Adventure_Map_Stronghold_capitol.gif"
+            ),
+            FractionPair(
+                Fraction.FORTRESS,
+                "https://heroes.thelazy.net/images/d/df/Adventure_Map_Fortress_capitol.gif"
+            ),
+            FractionPair(
+                Fraction.CONFLUX,
+                "https://heroes.thelazy.net/images/a/ac/Adventure_Map_Conflux_capitol.gif"
+            )
+        )
     }
 }

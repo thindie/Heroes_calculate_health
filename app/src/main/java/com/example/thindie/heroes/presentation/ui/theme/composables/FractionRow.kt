@@ -6,17 +6,21 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.thindie.heroes.domain.entities.Fraction
-import com.example.thindie.heroes.presentation.fractionList
+import com.example.thindie.heroes.domain.entities.FractionPair
+import com.example.thindie.heroes.presentation.HeroesViewModel
 import com.example.thindie.heroes.presentation.ui.theme.HeroesTheme
 
 @Composable
 fun FractionRow(
-    modifier: Modifier = Modifier,
-    onClick: () -> Unit
+    list: State<List<FractionPair>?>,
+    viewModel: HeroesViewModel,
+    modifier: Modifier = Modifier
 ) {
     LazyRow(
         horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -24,12 +28,10 @@ fun FractionRow(
         modifier = modifier.padding(top = 8.dp, bottom = 30.dp),
 
         ) {
-        items(fractionList()) { fraction ->
+        items(list.value!!) { fraction ->
             FractionElement(
-                fraction = fraction,
-                modifier = modifier.padding(end = 8.dp),
-                onClick = onClick,
-                imageUrl = ""
+                fractionPair = fraction,
+                viewModel = viewModel
             )
         }
     }
@@ -39,6 +41,6 @@ fun FractionRow(
 @Composable
 fun FractionRowPreview() {
     HeroesTheme {
-        FractionRow(onClick = {})
+
     }
 }

@@ -6,11 +6,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.thindie.heroes.data.HeroesRepositoryImpl
 import com.example.thindie.heroes.domain.entities.Fraction
+import com.example.thindie.heroes.domain.entities.FractionPair
 import com.example.thindie.heroes.domain.entities.Monster
-import com.example.thindie.heroes.domain.useCases.CalculateGrowthUseCase
-import com.example.thindie.heroes.domain.useCases.GetAllCreaturesUseCase
-import com.example.thindie.heroes.domain.useCases.GetFractionUseCase
-import com.example.thindie.heroes.domain.useCases.GetMonsterUseCase
+import com.example.thindie.heroes.domain.useCases.*
 
 class HeroesViewModel(application: Application) : AndroidViewModel(application) {
     private val heroesRepository = HeroesRepositoryImpl(application)
@@ -18,6 +16,7 @@ class HeroesViewModel(application: Application) : AndroidViewModel(application) 
     private val getFractionUseCase = GetFractionUseCase(heroesRepository)
     private val getMonsterUseCase = GetMonsterUseCase(heroesRepository)
     private val getAllCreaturesUseCase = GetAllCreaturesUseCase(heroesRepository)
+    private val getAllFractionsUseCase = GetAllFractionsUseCase(heroesRepository)
 
     private val _monster = MutableLiveData<Monster>()
     val monster: LiveData<Monster>
@@ -31,11 +30,16 @@ class HeroesViewModel(application: Application) : AndroidViewModel(application) 
     val fraction: LiveData<List<Monster>>
         get() = _fraction
 
+    private val _allFractions = MutableLiveData<List<FractionPair>>()
+    val allFractions: LiveData<List<FractionPair>>
+        get() = _allFractions
+
     init {
         allMonsters()
+        getAllFractions()
     }
 
-     fun singleMonster(string: String) {
+    fun singleMonster(string: String) {
         _monster.value = getMonsterUseCase.getMonster(string)
     }
 
@@ -43,7 +47,11 @@ class HeroesViewModel(application: Application) : AndroidViewModel(application) 
         _allMonsters.value = getAllCreaturesUseCase.getAllCreatures()
     }
 
-     fun getFraction(fraction: Fraction) {
+    fun getFraction(fraction: Fraction) {
         _fraction.value = getFractionUseCase.getFraction(fraction)
+    }
+
+    private fun getAllFractions() {
+        _allFractions.value = getAllFractionsUseCase.getAllFractions()
     }
 }

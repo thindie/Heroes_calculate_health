@@ -6,6 +6,8 @@ interface HeroesRepository {
 
     fun getAllCreatures() : List<Monster>
 
+    fun getAllFractions() : List<FractionPair>
+
     fun getFraction(fraction: Fraction): List<Monster>
 
     fun acceptMonster(name : String): Monster
