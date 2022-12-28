@@ -20,6 +20,7 @@ class GrowthMapper {
     ): HealthPoints {
         return HealthPoints(
             monster.growth
+                    * monster.health
                     * week.weekNumber
                     * PopulationGiver.multiplier(monster::class.java)
         )

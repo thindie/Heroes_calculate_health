@@ -3,10 +3,10 @@ package com.example.thindie.heroes.presentation
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
+import androidx.core.view.WindowCompat
 import androidx.lifecycle.ViewModelProvider
 
 class MainActivity : AppCompatActivity() {
@@ -18,15 +18,35 @@ class MainActivity : AppCompatActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent {
-            Scaffold() { paddingValues ->
-                Heroes(
-                    viewModel = viewModel,
-                    modifier = Modifier.padding(paddingValues)
-                )
-            }
+        WindowCompat.setDecorFitsSystemWindows(window, false)
 
+
+        setContent {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .statusBarsPadding()
+                    .navigationBarsPadding()
+            ) {
+
+            }
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .statusBarsPadding()
+                    .systemBarsPadding()
+            ) {
+
+            }
+            Heroes(
+                viewModel = viewModel,
+                modifier = Modifier.padding(
+
+                )
+            )
 
         }
     }
 }
+
+

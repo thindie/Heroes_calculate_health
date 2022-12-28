@@ -12,6 +12,8 @@ data class Monster (
     val speed: Int,
     var fraction: Fraction = Fraction.CITADEL,
     val level: MonsterLevel,
-    var IMG_url: String?
+    var IMG_url: String?,
+    var checkedToCalculate: Pair<Boolean, String> = false to "checked",
+    var expandToDetailView: Pair<Boolean, String> = false to "expanded"
 )
 

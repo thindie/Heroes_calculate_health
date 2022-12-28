@@ -4,15 +4,20 @@ import com.example.thindie.heroes.domain.entities.Fraction
 import com.example.thindie.heroes.domain.entities.FractionPair
 import com.example.thindie.heroes.domain.entities.Monster
 
-class FractionData(fileReader: RawResourceReader) {
+class FractionData(private  val fileReader: RawResourceReader) {
 
-    private val monsterList = fileReader.readFromCreaturesFile()
+    private var monsterList: List<Monster>? = null
 
     fun getAllCreatures(): List<Monster> {
-        monsterList.forEach { monster ->
-            monster.fraction = detectFraction(monster.name)
+        if(monsterList.isNullOrEmpty()){
+            monsterList = fileReader.readFromCreaturesFile()
+
+           monsterList.let {
+               it!!.forEach { monster ->
+                   monster.fraction = detectFraction(monster.name) }
+           }
         }
-        return monsterList
+        return monsterList as List<Monster>
     }
 
     private fun detectFraction(name: String): Fraction {
@@ -94,7 +99,7 @@ class FractionData(fileReader: RawResourceReader) {
                 fractionList.add(getSingleMonsterByName("Devil"))
                 fractionList.add(getSingleMonsterByName("ArchDevil"))
             }
-            Fraction.NECROPOLIS -> {
+            Fraction.NECRO -> {
                 fractionList.add(getSingleMonsterByName("Skeleton"))
                 fractionList.add(getSingleMonsterByName("SkeletonWarrior"))
                 fractionList.add(getSingleMonsterByName("WalkingDead"))
@@ -182,7 +187,7 @@ class FractionData(fileReader: RawResourceReader) {
     }
 
     fun getSingleMonsterByName(name: String): Monster {
-        monsterList.forEach { monster ->
+        monsterList!!.forEach { monster ->
             if (monster.name == name) {
                 return monster
             }
@@ -210,7 +215,7 @@ class FractionData(fileReader: RawResourceReader) {
                 "https://heroes.thelazy.net/images/0/03/Adventure_Map_Inferno_capitol.gif"
             ),
             FractionPair(
-                Fraction.NECROPOLIS,
+                Fraction.NECRO,
                 "https://heroes.thelazy.net/images/7/70/Adventure_Map_Necropolis_capitol.gif"
             ),
             FractionPair(

@@ -1,74 +1,149 @@
 package com.example.thindie.heroes.presentation.ui.theme.composables
 
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.animation.core.spring
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Checkbox
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ExpandLess
+import androidx.compose.material.icons.filled.ExpandMore
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
-import com.example.thindie.heroes.R
+import com.example.thindie.heroes.domain.entities.Monster
+import com.example.thindie.heroes.presentation.HeroesViewModel
 import com.example.thindie.heroes.presentation.ui.theme.HeroesTheme
 
 @Composable
 fun MonsterCard(
-    imageUrl: String,
-    monsterName: String,
-    onCheckedChange: (Boolean) -> Unit,
-    modifier: Modifier = Modifier
+    monster: Monster,
+    modifier: Modifier = Modifier,
+    expanded: Boolean,
+    onClickExpanded: ()-> Unit,
+    checked: Boolean,
+    onClickChecked: (Boolean)-> Unit,
+    onClickCoLevel: () -> Unit
+
 ) {
 
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier
-            .height(62.dp)
-    ) {
 
-        Image(
-            painter =  rememberAsyncImagePainter(imageUrl),
-            contentDescription = null,
-            contentScale = ContentScale.Fit,
-            modifier = modifier
-                .size(72.dp)
-                .padding(horizontal = 8.dp)
-                .clip(RoundedCornerShape(35))
+    val additionPadding by animateDpAsState(
+        targetValue =
+        if (expanded) {
+            120.dp
+        } else {
+            0.dp
+        },
+
+        animationSpec = spring(
+            dampingRatio = Spring.DampingRatioLowBouncy,
+            stiffness = Spring.StiffnessLow
         )
-        Text(
-            text = monsterName,
-            style = MaterialTheme.typography.headlineSmall,
-            modifier = Modifier.padding(start = 8.dp, end = 10.dp)
-        )
-        
-        Spacer(modifier = Modifier
-            .weight(1f)
-            .fillMaxHeight()
+    )
+    Surface(
+        shape = ShapeDefaults.Large,
+        tonalElevation = 3.dp,
+        shadowElevation = 8.dp,
+        color = MaterialTheme.colorScheme.onSecondary,
+        modifier = Modifier.padding(bottom = 10.dp)
+    ) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
+                .padding(bottom = additionPadding.coerceAtLeast(0.dp))
+
+
+        ) {
+
+
+            Image(
+                painter = rememberAsyncImagePainter(monster.IMG_url),
+                contentDescription = null,
+                contentScale = ContentScale.Fit,
+                modifier = modifier
+                    .size(72.dp)
+                    .padding(horizontal = 8.dp)
+                    .clip(CircleShape)
+            )
+            Text(
+                text = monster.name,
+                style = MaterialTheme.typography.headlineMedium,
+                modifier = Modifier.padding(start = 8.dp, end = 10.dp)
+
             )
 
-        Checkbox(
-            checked = false,
-            onCheckedChange = onCheckedChange,
-            modifier = modifier
-                .padding(end = 8.dp)
 
-        )
-    }
+            Spacer(
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxHeight()
+            )
 
-}
+            Checkbox(
+                checked = checked,
+                onCheckedChange = onClickChecked,
+                modifier = modifier
+                    .padding(end = 8.dp)
+                    .scale(0.5f)
+            )
 
+            IconButton(
+                onClick = onClickExpanded,
+                modifier = modifier
+            ) {
+                Icon(
+                    imageVector = if (expanded) Icons.Filled.ExpandLess else Icons.Filled.ExpandMore,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.primary,
+                    modifier = modifier
+                )
+            }
 
-@Preview(showSystemUi = false, showBackground = true)
-@Composable
-fun MonsterCardPreview() {
-    HeroesTheme() {
-        MonsterCard(monsterName = "BLACK DRAGON", imageUrl = "", onCheckedChange = {})
+        }
+        if (expanded) {
+            Row(
+                modifier = Modifier.padding(
+                    start = 82.dp,
+                    top = 60.dp
+                )
+            ) {
+                Text(
+                    text = "attack : ".plus(monster.attack).plus("\n").plus("defence : ")
+                        .plus(monster.defence).plus("\n").plus("damage : ").plus(monster.damageFrom)
+                         .plus(" - ").plus(monster.damageTo).plus("\n").plus("health : ")
+                        .plus(monster.health).plus("\n").plus("growth : ").plus(monster.growth)
+                        .plus("\n").plus("cost : ").plus(monster.cost).plus("\n").plus("speed : ")
+                        .plus(monster.speed).plus("\n"),
+                    style = MaterialTheme.typography.bodyMedium
+                )
+                Row() {
+                    Spacer(modifier = modifier.weight(1f))
+                    Button(
+                        onClick = onClickCoLevel,
+                        shape = ShapeDefaults.Medium,
+                        modifier = modifier
+                            .padding(top = 90.dp, end = 10.dp)
+                    ) {
+                        Text(text = "Co-leveled")
+                    }
+                }
+            }
+
+            @Composable
+            fun MonsterCardPreview() {
+                HeroesTheme() {
+
+                }
+            }
+        }
     }
 }

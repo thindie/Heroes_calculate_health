@@ -38,6 +38,19 @@ class HeroesRepositoryImpl(application: Application) : HeroesRepository {
         return HealthPoints(points)
     }
 
+    override fun collectAllCountableMonsters(): List<Monster> {
+        val resultList = mutableListOf<Monster>()
+        val allMonsterList = getAllCreatures()
+        allMonsterList.forEach {
+            monster ->
+            if(monster.checkedToCalculate.first){
+                resultList.add(monster)
+            }
+        }
+        return resultList.toList()
+    }
+
+
     override fun accumulateHealthPoints(vararg healthPoints: HealthPoints): HealthPoints {
         var points = 0
         healthPoints.forEach { points += it.health }

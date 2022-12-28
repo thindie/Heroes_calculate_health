@@ -17,5 +17,7 @@ interface HeroesRepository {
         list: List<Monster>
     ): HealthPoints
 
+    fun collectAllCountableMonsters() : List<Monster>
+
     fun accumulateHealthPoints(vararg healthPoints: HealthPoints): HealthPoints
 }
