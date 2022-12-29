@@ -1,9 +1,8 @@
 package com.example.thindie.heroes.presentation.ui.theme.composables
 
 
-import androidx.compose.animation.core.Spring
-import androidx.compose.animation.core.animateDpAsState
-import androidx.compose.animation.core.spring
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.*
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
@@ -33,27 +32,38 @@ fun HeroesBottomBar(viewModel: HeroesViewModel, modifier: Modifier) {
     val additionPadding by animateDpAsState(
         targetValue =
         if (expanded.value) {
-            220.dp
+            320.dp
         } else {
-           50.dp
+           150.dp
         },
         animationSpec = spring(
             dampingRatio = Spring.DampingRatioLowBouncy,
             stiffness = Spring.StiffnessLow
         )
     )
+    
+    val changingColorIn = animateColorAsState(targetValue = MaterialTheme.colorScheme.inverseOnSurface,
+            //animationSpec = tween(300, 30, FastOutSlowInEasing)
+        )
+
+    val changingColorOut = animateColorAsState(targetValue = MaterialTheme.colorScheme.surface,
+       // animationSpec = tween(2000, 1800, LinearOutSlowInEasing)
+    )
 
 
 Surface(
-    Modifier
+    color = if(expanded.value) changingColorIn.value else changingColorOut.value,
+    modifier = Modifier
         .height(additionPadding)
-        .clip(ShapeDefaults.ExtraLarge)) {
+        ) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
             .fillMaxHeight()
             .clickable {
-                if(!expanded.value){expanded.value = !expanded.value}
+                if (!expanded.value) {
+                    expanded.value = !expanded.value
+                }
                 collectedData.value = !collectedData.value
                 viewModel.showHealth();
                 collectedData.value = true
@@ -75,7 +85,7 @@ Surface(
 
             Column(modifier = Modifier
                 .padding(top = 40.dp, start = 40.dp)) {
-                Text(text = healthPoints.value!!.health.toString())
+
             }
 
             IconButton(
@@ -88,6 +98,27 @@ Surface(
                     tint = MaterialTheme.colorScheme.primary,
                     modifier = modifier.scale(0.7f)
                 )
+            }
+        }
+        Row(){
+            Column(modifier = Modifier
+                .fillMaxHeight()
+                .padding(top = 60.dp, start = 20.dp))
+            {
+                Text(text = "Accumulated HealthPoints : ".plus(healthPoints.value!!.health.toString()),
+                        style = MaterialTheme.typography.titleSmall
+                    )
+            }
+            Spacer(modifier = Modifier.weight(1f))
+            Column(modifier = Modifier
+                .fillMaxHeight()
+                .padding(top = 60.dp, end = 3.dp))
+            {
+                Spacer(modifier = Modifier.weight(.6f))
+                Button(onClick = { /*TODO*/ }) {
+                    Text(text = "Add week")
+                }
+                Spacer(modifier = Modifier.weight(.3f))
             }
         }
 

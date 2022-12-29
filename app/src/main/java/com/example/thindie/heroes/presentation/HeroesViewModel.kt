@@ -118,7 +118,7 @@ class HeroesViewModel(application: Application) : AndroidViewModel(application) 
                                     searchingList.add(monster)
                             }
                             if(searchingList.size == 1){
-                              val correctedList =  correctSingleMonsterList(searchingList)
+                              val correctedList =  correctSingleMonsterList(searchingList);
                                 searchingList.clear()
                                 searchingList.addAll(correctedList)
                             }
