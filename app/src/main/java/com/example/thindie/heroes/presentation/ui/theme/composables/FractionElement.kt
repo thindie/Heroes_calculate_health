@@ -40,8 +40,6 @@ fun FractionElement(
             .clip(CircleShape)
             .size(84.dp)
             .shadow(68.dp)
-
-
             .fillMaxWidth()
 
     ) {

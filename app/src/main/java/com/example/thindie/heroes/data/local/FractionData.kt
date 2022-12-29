@@ -9,14 +9,13 @@ class FractionData(private  val fileReader: RawResourceReader) {
     private var monsterList: List<Monster>? = null
 
     fun getAllCreatures(): List<Monster> {
-        if(monsterList.isNullOrEmpty()){
+        if(monsterList.isNullOrEmpty()) {
             monsterList = fileReader.readFromCreaturesFile()
-
+        }
            monsterList.let {
                it!!.forEach { monster ->
                    monster.fraction = detectFraction(monster.name) }
            }
-        }
         return monsterList as List<Monster>
     }
 

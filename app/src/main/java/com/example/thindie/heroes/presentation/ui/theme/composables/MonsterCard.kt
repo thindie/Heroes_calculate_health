@@ -49,12 +49,15 @@ fun MonsterCard(
             stiffness = Spring.StiffnessLow
         )
     )
+
+
+
     Surface(
         shape = ShapeDefaults.Large,
         tonalElevation = 3.dp,
         shadowElevation = 8.dp,
         color = MaterialTheme.colorScheme.onSecondary,
-        modifier = Modifier.padding(bottom = 10.dp)
+        modifier = Modifier.padding(bottom = 1.dp)
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -69,15 +72,15 @@ fun MonsterCard(
                 painter = rememberAsyncImagePainter(monster.IMG_url),
                 contentDescription = null,
                 contentScale = ContentScale.Fit,
-                modifier = modifier
+                modifier = Modifier
                     .size(72.dp)
-                    .padding(horizontal = 8.dp)
+                    .padding(horizontal = 1.dp, vertical = 1.dp)
                     .clip(CircleShape)
             )
             Text(
                 text = monster.name,
                 style = MaterialTheme.typography.headlineMedium,
-                modifier = Modifier.padding(start = 8.dp, end = 10.dp)
+                modifier = Modifier.padding(start = 30.dp, end = 10.dp)
 
             )
 
@@ -93,7 +96,7 @@ fun MonsterCard(
                 onCheckedChange = onClickChecked,
                 modifier = modifier
                     .padding(end = 8.dp)
-                    .scale(0.5f)
+                    .scale(0.7f)
             )
 
             IconButton(

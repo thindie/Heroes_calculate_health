@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.magnifier
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
@@ -24,11 +25,11 @@ fun FractionRow(
     viewModel: HeroesViewModel,
     modifier: Modifier = Modifier
 ) {
-    Surface(color = MaterialTheme.colorScheme.onSecondary)   {
+    Surface(color = MaterialTheme.colorScheme.onSecondary, modifier = modifier)   {
         LazyRow(
-            horizontalArrangement = Arrangement.spacedBy(8.dp),
-            contentPadding = PaddingValues(horizontal = 16.dp),
-            modifier = modifier.padding(top = 8.dp, bottom = 30.dp),
+            horizontalArrangement = Arrangement.spacedBy(2.dp),
+            contentPadding = PaddingValues(horizontal = 2.dp),
+            modifier = modifier.padding(top = 3.dp, bottom = 3.dp),
 
             ) {
             items(list.value!!) { fraction ->

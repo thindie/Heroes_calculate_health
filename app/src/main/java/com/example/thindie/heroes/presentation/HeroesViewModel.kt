@@ -1,5 +1,6 @@
 package com.example.thindie.heroes.presentation
 
+import android.annotation.SuppressLint
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
@@ -55,36 +56,47 @@ class HeroesViewModel(application: Application) : AndroidViewModel(application) 
         list = chosenMonsters)
 
         _healthPoints.value = healthPoints
-        _checkedMonsters.value = collectAllCountableMonstersUseCase.collectCountable()
+
     }
 
-    fun changeStatus(name: String, param: Pair<Boolean, String>, listToChange: List<Monster>) {
-
-
+    fun changeStatus(onChangedMonster: Monster, param: Pair<Boolean, String>, listToChange: List<Monster>) {
         val thinList = mutableListOf<Monster>()
+
+
+        val name = onChangedMonster.name
+
         listToChange.forEach {
             thinList.add(
                 it.apply {
                     if (this.name == name) {
                         when (param.second.trim().lowercase()) {
-                            "expanded" -> {
+                            EXPANDED -> {
                                 when (this.expandToDetailView.first) {
-                                    true -> this.expandToDetailView = false to "expanded"
-                                    else -> this.expandToDetailView = true to "expanded"
+                                    true -> this.expandToDetailView = false to EXPANDED
+                                    else -> this.expandToDetailView = true to EXPANDED
                                 }
                             }
-                            "checked" -> {
+                            CHECKED -> {
                                 when (this.checkedToCalculate.first) {
-                                    true -> {this.checkedToCalculate = false to "checked"; removeChecked(this.name)}
-                                    else -> {this.checkedToCalculate = true to "checked"; addChecked(this.name)}
+                                    true -> {
+                                        this.checkedToCalculate = false to CHECKED; removeChecked(
+                                            this.name
+                                        )
+                                    }
+                                    else -> {
+                                        this.checkedToCalculate =
+                                            true to CHECKED; addChecked(this.name)
+                                    }
                                 }
                             }
                         }
                     }
                 })
+            _checkedMonsters.value = collectAllCountableMonstersUseCase.collectCountable()
             _allMonsters.value = thinList.toList()
             _fraction.value = thinList.toList()
         }
+
     }
 
     fun searchEngine(string: String, incomingMonster: Monster?) {

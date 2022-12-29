@@ -13,6 +13,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -29,8 +30,9 @@ fun HeroesSearchBar(
     val line = rememberSaveable { mutableStateOf("") }
     Surface(
         color = MaterialTheme.colorScheme.onSecondary,
-        modifier = modifier
-            .padding(start = 20.dp, top = 54.dp, end = 20.dp, bottom = 10.dp)
+        modifier = Modifier
+            .padding(start = 20.dp, top = 54.dp, end = 20.dp, bottom = 20.dp)
+            .scale(0.8f)
             .fillMaxWidth(),
         shape = shapes.extraLarge,
     ) {
@@ -41,7 +43,7 @@ fun HeroesSearchBar(
                 Icon(
                     imageVector = Icons.Default.Search,
                     contentDescription = null,
-                    modifier = modifier
+                    modifier = Modifier
                         .clickable
                             (
                             enabled = true,
@@ -49,26 +51,21 @@ fun HeroesSearchBar(
                                 viewModel.searchEngine(line.value, null); line.value = "";
                                 keyboardController!!.hide()
                             }
-
                         )
-                        .clip(CircleShape)
+                        .scale(1.3f)
+                        .clip(ShapeDefaults.Large)
                 )
             },
-            colors = TextFieldDefaults.textFieldColors(MaterialTheme.colorScheme.primary),
+            colors = TextFieldDefaults.textFieldColors(MaterialTheme.colorScheme.onPrimaryContainer),
             placeholder = {
-                Text(text = "Search from all creatures..")
+                Text(text = "Search from all creatures..",
+                    style = MaterialTheme.typography.titleLarge
+                    )
             },
-
-
+            textStyle = MaterialTheme.typography.titleLarge
             )
-        modifier.clip(ShapeDefaults.ExtraLarge)
+
+
     }
-
-}
-
-
-@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
-@Composable
-fun SearchBarPreview() {
 
 }
