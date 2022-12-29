@@ -17,6 +17,7 @@ class HeroesViewModel(application: Application) : AndroidViewModel(application) 
     private val getAllCreaturesUseCase = GetAllCreaturesUseCase(heroesRepository)
     private val getAllFractionsUseCase = GetAllFractionsUseCase(heroesRepository)
     private val collectAllCountableMonstersUseCase = CollectAllCountableMonstersUseCase(heroesRepository)
+    private val accumulateGoldUseCase = AccumulateGoldUseCase(heroesRepository)
 
     private val calculateHealthList: MutableList<Monster> = mutableListOf()
 
@@ -45,19 +46,39 @@ class HeroesViewModel(application: Application) : AndroidViewModel(application) 
     val allFractions: LiveData<List<FractionPair>>
         get() = _allFractions
 
+    private val _gold = MutableLiveData<Int>()
+    val gold: LiveData<Int>
+        get() = _gold
+
     init {
         allMonsters()
         getAllFractions()
     }
 
-    fun showHealth() {
-        val chosenMonsters = collectAllCountableMonstersUseCase.collectCountable()
-        val healthPoints = calculateGrowthUseCase.calculateGrowth(week = Week(),
-        list = chosenMonsters)
-
-        _healthPoints.value = healthPoints
-
+    fun setZeroGoldIndication(){
+        _gold.value = 0
     }
+
+    fun showHealth(week: Week?) {
+        if(week == null){
+            val chosenMonsters = collectAllCountableMonstersUseCase.collectCountable()
+            val healthPoints = calculateGrowthUseCase.calculateGrowth(week = Week(), list = chosenMonsters)
+            _healthPoints.value = healthPoints
+        }
+        else{
+            val chosenMonsters = collectAllCountableMonstersUseCase.collectCountable()
+            val healthPoints = calculateGrowthUseCase.calculateGrowth(week = week, list = chosenMonsters)
+            _healthPoints.value = healthPoints
+        }
+
+       }
+
+    fun showGold(list: List<Monster>, week: Week){
+        _gold.value = accumulateGoldUseCase.accumulateGoldUseCase(list,week)
+    }
+
+
+
 
     fun changeStatus(onChangedMonster: Monster, param: Pair<Boolean, String>, listToChange: List<Monster>) {
         val thinList = mutableListOf<Monster>()

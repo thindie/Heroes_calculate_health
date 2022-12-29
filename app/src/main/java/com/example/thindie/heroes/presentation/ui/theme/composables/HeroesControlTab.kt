@@ -9,16 +9,20 @@ import androidx.compose.material3.ShapeDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.example.thindie.heroes.domain.entities.Week
 import com.example.thindie.heroes.presentation.CHECKED
 import com.example.thindie.heroes.presentation.HeroesViewModel
 
 @Composable
 fun HeroesControlTab(modifier: Modifier, viewModel: HeroesViewModel){
     val checkedMonsters = viewModel.checkedMonsters.observeAsState()
-    val allMonsters = viewModel.allMonsters.observeAsState()
+
+
     Row(modifier = Modifier.padding(top = 10.dp, bottom = 10.dp)) {
         Column() {
             Text(text = "Set Week")
@@ -37,7 +41,7 @@ fun HeroesControlTab(modifier: Modifier, viewModel: HeroesViewModel){
                                 viewModel.changeStatus(it, true to CHECKED, list)
                             }
                             viewModel.searchEngine("", null)
-                            viewModel.showHealth()
+
                         }
 
                           })

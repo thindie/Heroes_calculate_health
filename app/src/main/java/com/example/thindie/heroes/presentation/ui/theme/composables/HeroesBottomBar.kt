@@ -16,17 +16,26 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.unit.dp
+import com.example.thindie.heroes.domain.entities.Week
 import com.example.thindie.heroes.presentation.HeroesViewModel
+import com.example.thindie.heroes.presentation.START_WEEK_VALUE
+import com.example.thindie.heroes.presentation.USELESS_WEEK_VALUE
 
 @Composable
 fun HeroesBottomBar(viewModel: HeroesViewModel, modifier: Modifier) {
     val healthPoints = viewModel.healthPoints.observeAsState()
+    val checkedMonsters = viewModel.checkedMonsters.observeAsState()
+    val goldToPay = viewModel.gold.observeAsState()
+
     val collectedData = remember { mutableStateOf(false) }
     val expanded = rememberSaveable {
         mutableStateOf(false)
+    }
+
+    val week = rememberSaveable  {
+        mutableStateOf(1)
     }
 
     val additionPadding by animateDpAsState(
@@ -42,12 +51,10 @@ fun HeroesBottomBar(viewModel: HeroesViewModel, modifier: Modifier) {
         )
     )
     
-    val changingColorIn = animateColorAsState(targetValue = MaterialTheme.colorScheme.inverseOnSurface,
-            //animationSpec = tween(300, 30, FastOutSlowInEasing)
+    val changingColorIn = animateColorAsState(targetValue = MaterialTheme.colorScheme.inverseOnSurface
         )
 
-    val changingColorOut = animateColorAsState(targetValue = MaterialTheme.colorScheme.surface,
-       // animationSpec = tween(2000, 1800, LinearOutSlowInEasing)
+    val changingColorOut = animateColorAsState(targetValue = MaterialTheme.colorScheme.surface
     )
 
 
@@ -65,7 +72,12 @@ Surface(
                     expanded.value = !expanded.value
                 }
                 collectedData.value = !collectedData.value
-                viewModel.showHealth();
+                viewModel.showHealth(Week(week.value))
+                if (checkedMonsters.value != null && !checkedMonsters.value.isNullOrEmpty()) {
+                    viewModel.showGold(checkedMonsters.value!!, Week(week.value))
+                }
+                else(viewModel.setZeroGoldIndication())
+
                 collectedData.value = true
             }
     ) {
@@ -108,6 +120,12 @@ Surface(
                 Text(text = "Accumulated HealthPoints : ".plus(healthPoints.value!!.health.toString()),
                         style = MaterialTheme.typography.titleSmall
                     )
+                Text(text = "Week count : ".plus(week.value),
+                    style = MaterialTheme.typography.titleSmall
+                )
+                Text(text = "Gold to Pay : ".plus(goldToPay.value),
+                    style = MaterialTheme.typography.titleSmall
+                )
             }
             Spacer(modifier = Modifier.weight(1f))
             Column(modifier = Modifier
@@ -115,7 +133,11 @@ Surface(
                 .padding(top = 60.dp, end = 3.dp))
             {
                 Spacer(modifier = Modifier.weight(.6f))
-                Button(onClick = { /*TODO*/ }) {
+                Button(onClick =
+                {
+                    week.value++
+                    if(week.value == USELESS_WEEK_VALUE){week.value = START_WEEK_VALUE}
+                         }) {
                     Text(text = "Add week")
                 }
                 Spacer(modifier = Modifier.weight(.3f))

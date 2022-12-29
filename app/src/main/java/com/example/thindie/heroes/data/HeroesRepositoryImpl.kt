@@ -6,6 +6,7 @@ import com.example.thindie.heroes.data.local.RawResourceReader
 import com.example.thindie.heroes.data.mappers.GrowthMapper
 import com.example.thindie.heroes.domain.HeroesRepository
 import com.example.thindie.heroes.domain.entities.*
+import com.example.thindie.heroes.presentation.CASTLE_MULTIPLIER
 
 class HeroesRepositoryImpl(application: Application) : HeroesRepository {
     private val growthMapper = GrowthMapper()
@@ -55,6 +56,14 @@ class HeroesRepositoryImpl(application: Application) : HeroesRepository {
         var points = 0
         healthPoints.forEach { points += it.health }
         return HealthPoints(points)
+    }
+
+    override fun accumulateGold(list: List<Monster>, week: Week): Int {
+        var totalGold = 0
+        list.forEach {
+            monster ->  totalGold += (monster.cost * monster.growth * week.weekNumber * CASTLE_MULTIPLIER)
+        }
+        return totalGold
     }
 
 }

@@ -8,9 +8,9 @@ class GrowthMapper {
         week: Week,
     ): HealthPoints {
         return HealthPoints(
-            dwelling.growth
+                    (dwelling.monster.growth * PopulationGiver.multiplier(dwelling, null))
                     * week.weekNumber
-                    * PopulationGiver.multiplier(dwelling::class.java)
+                            *dwelling.growth
         )
     }
 
@@ -19,10 +19,11 @@ class GrowthMapper {
         week: Week,
     ): HealthPoints {
         return HealthPoints(
-            monster.growth
+
+                    ( monster.growth * PopulationGiver.multiplier(null, monster))
                     * monster.health
                     * week.weekNumber
-                    * PopulationGiver.multiplier(monster::class.java)
+
         )
     }
 
