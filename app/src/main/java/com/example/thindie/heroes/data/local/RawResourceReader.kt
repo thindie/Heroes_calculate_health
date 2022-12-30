@@ -7,10 +7,7 @@ import com.example.thindie.heroes.data.mappers.FromNumToLevel
 import com.example.thindie.heroes.domain.entities.Fraction
 import com.example.thindie.heroes.domain.entities.Monster
 import com.example.thindie.heroes.domain.entities.MonsterLevel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import java.io.BufferedReader
 import java.io.InputStreamReader
 

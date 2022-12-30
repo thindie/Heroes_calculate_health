@@ -6,7 +6,7 @@ interface HeroesRepository {
 
     fun getAllCreatures() : List<Monster>
 
-    fun getAllFractions() : List<FractionPair>
+    fun getAllFractions() : List<FractionToImage>
 
     fun getFraction(fraction: Fraction): List<Monster>
 

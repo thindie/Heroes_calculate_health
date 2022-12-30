@@ -1,6 +1,7 @@
 package com.example.thindie.heroes.presentation
 
-const val SEARCH_BY_LEVEL = "search_level"
+const val SEARCH_BY_LEVEL = "level"
+const val SEARCH_BY_FRACTION = "fraction"
 const val CHECKED = "checked"
 const val EXPANDED = "expanded"
 const val START_WEEK_VALUE = 1

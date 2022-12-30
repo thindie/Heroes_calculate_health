@@ -1,6 +1,7 @@
 package com.example.thindie.heroes.presentation
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.*
@@ -15,33 +16,15 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
-
         setContent {
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .statusBarsPadding()
-                    .navigationBarsPadding()
-            ) {
-
-            }
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .statusBarsPadding()
-                    .systemBarsPadding()
-            ) {
-
-            }
+            Log.d("Service", "Main")
             Heroes(
                 viewModel = viewModel,
                 modifier = Modifier.padding(
-
                 )
             )
 

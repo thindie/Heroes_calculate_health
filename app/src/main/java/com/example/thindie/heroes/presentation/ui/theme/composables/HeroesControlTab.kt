@@ -19,29 +19,30 @@ import com.example.thindie.heroes.presentation.CHECKED
 import com.example.thindie.heroes.presentation.HeroesViewModel
 
 @Composable
-fun HeroesControlTab(modifier: Modifier, viewModel: HeroesViewModel){
-    val checkedMonsters = viewModel.checkedMonsters.observeAsState()
-
+fun HeroesControlTab(viewModel: HeroesViewModel){
+    val checkedMonsters = viewModel.representCheckedMonster().observeAsState()
+    val allMonsters = viewModel.representTotalMonsterList().observeAsState()
 
     Row(modifier = Modifier.padding(top = 10.dp, bottom = 10.dp)) {
         Column() {
             Text(text = "Set Week")
         }
-        Spacer(modifier = modifier.weight(0.3f))
+        Spacer(modifier = Modifier.weight(0.3f))
         Column() {
             Text(text = "..Growth")
         }
-        Spacer(modifier = modifier.weight(0.3f))
+        Spacer(modifier = Modifier.weight(0.3f))
         Column(
-            modifier = modifier.
+            modifier = Modifier.
                     clickable {
                         val list = checkedMonsters.value
                         if(!list.isNullOrEmpty()){
-                            list.forEach {
-                                viewModel.changeStatus(it, true to CHECKED, list)
+                            list.forEach {monster ->
+                                viewModel.representUserBehavior(CHECKED,  monster, list.toList())
                             }
-                            viewModel.searchEngine("", null)
-
+                            viewModel.representUserBehavior("",
+                                    null,
+                                    allMonsters.value!!)
                         }
 
                           })

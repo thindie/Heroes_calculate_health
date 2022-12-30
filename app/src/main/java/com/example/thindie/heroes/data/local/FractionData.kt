@@ -1,30 +1,33 @@
 package com.example.thindie.heroes.data.local
 
+import android.util.Log
 import com.example.thindie.heroes.domain.entities.Fraction
-import com.example.thindie.heroes.domain.entities.FractionPair
+import com.example.thindie.heroes.domain.entities.FractionToImage
 import com.example.thindie.heroes.domain.entities.Monster
 
 class FractionData(private  val fileReader: RawResourceReader) {
 
-    private var monsterList: List<Monster>? = null
+    private var monsterList: List<Monster>  = mutableListOf()
+
 
     fun getAllCreatures(): List<Monster> {
-        if(monsterList.isNullOrEmpty()) {
+        if(monsterList.isEmpty()) {
             monsterList = fileReader.readFromCreaturesFile()
         }
-           monsterList.let {
-               it!!.forEach { monster ->
-                   monster.fraction = detectFraction(monster.name) }
-           }
-        return monsterList as List<Monster>
+            monsterList.forEach {
+                monster ->  monster.fraction = detectFraction(monster)
+
+        }
+
+        Log.d("Service", "FractionData")
+        return monsterList
     }
 
-    private fun detectFraction(name: String): Fraction {
+    private fun detectFraction(monster: Monster): Fraction {
         Fraction.values().forEach { fraction ->
             val fractionList = representFraction(fraction)
-            val monsterToCompare = getSingleMonsterByName(name)
             fractionList.forEach { fractionMonster ->
-                if (monsterToCompare.name == fractionMonster.name)
+                if (monster.name == fractionMonster.name)
                     return fraction
             }
         }
@@ -186,7 +189,7 @@ class FractionData(private  val fileReader: RawResourceReader) {
     }
 
     fun getSingleMonsterByName(name: String): Monster {
-        monsterList!!.forEach { monster ->
+        monsterList.forEach { monster ->
             if (monster.name == name) {
                 return monster
             }
@@ -195,41 +198,41 @@ class FractionData(private  val fileReader: RawResourceReader) {
         throw RuntimeException("search single monster malfunction")
     }
 
-    fun getFractionImage(): List<FractionPair> {
+    fun getFractionImage(): List<FractionToImage> {
         return listOf(
-            FractionPair(
+            FractionToImage(
                 Fraction.CASTLE,
                 "https://heroes.thelazy.net/images/6/63/Adventure_Map_Castle_capitol.gif"
             ),
-            FractionPair(
+            FractionToImage(
                 Fraction.RAMPART,
                 "https://heroes.thelazy.net/images/c/cd/Adventure_Map_Rampart_capitol.gif"
             ),
-            FractionPair(
+            FractionToImage(
                 Fraction.TOWER,
                 "https://heroes.thelazy.net/images/9/9f/Adventure_Map_Tower_capitol.gif"
             ),
-            FractionPair(
+            FractionToImage(
                 Fraction.INFERNO,
                 "https://heroes.thelazy.net/images/0/03/Adventure_Map_Inferno_capitol.gif"
             ),
-            FractionPair(
+            FractionToImage(
                 Fraction.NECRO,
                 "https://heroes.thelazy.net/images/7/70/Adventure_Map_Necropolis_capitol.gif"
             ),
-            FractionPair(
+            FractionToImage(
                 Fraction.DUNGEON,
                 "https://heroes.thelazy.net/images/7/74/Adventure_Map_Dungeon_capitol.gif"
             ),
-            FractionPair(
+            FractionToImage(
                 Fraction.CITADEL,
                 "https://heroes.thelazy.net/images/5/50/Adventure_Map_Stronghold_capitol.gif"
             ),
-            FractionPair(
+            FractionToImage(
                 Fraction.FORTRESS,
                 "https://heroes.thelazy.net/images/d/df/Adventure_Map_Fortress_capitol.gif"
             ),
-            FractionPair(
+            FractionToImage(
                 Fraction.CONFLUX,
                 "https://heroes.thelazy.net/images/a/ac/Adventure_Map_Conflux_capitol.gif"
             )

@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.magnifier
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
@@ -13,15 +12,14 @@ import androidx.compose.runtime.State
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.thindie.heroes.domain.entities.Fraction
-import com.example.thindie.heroes.domain.entities.FractionPair
+import com.example.thindie.heroes.domain.entities.FractionToImage
 import com.example.thindie.heroes.presentation.HeroesViewModel
 import com.example.thindie.heroes.presentation.ui.theme.HeroesTheme
 
 @Composable
 fun FractionRow(
-    list: State<List<FractionPair>?>,
+    list: State<List<FractionToImage>?>,
     viewModel: HeroesViewModel,
     modifier: Modifier = Modifier
 ) {
@@ -34,19 +32,11 @@ fun FractionRow(
             ) {
             items(list.value!!) { fraction ->
                 FractionElement(
-                    fractionPair = fraction,
-                    viewModel = viewModel
+                    fractionToImage = fraction,
+                    viewModel = viewModel,
                 )
             }
         }
     }
 
-}
-
-@Preview(showSystemUi = false, showBackground = true)
-@Composable
-fun FractionRowPreview() {
-    HeroesTheme {
-
-    }
 }
