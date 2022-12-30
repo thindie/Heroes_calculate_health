@@ -26,17 +26,22 @@ import com.example.thindie.heroes.presentation.USELESS_WEEK_VALUE
 @Composable
 fun HeroesBottomBar(viewModel: HeroesViewModel, modifier: Modifier) {
     val healthPoints = viewModel.healthPoints.observeAsState()
-    val checkedMonsters = viewModel.checkedMonsters.observeAsState()
-    val goldToPay = viewModel.gold.observeAsState()
+    val checkedMonsters = viewModel.representCheckedMonster().observeAsState()
+    val zeroGoldSet = viewModel.representGoldToZero()
 
     val collectedData = remember { mutableStateOf(false) }
     val expanded = rememberSaveable {
         mutableStateOf(false)
     }
 
-    val week = rememberSaveable  {
+    val weekNumber = rememberSaveable  {
         mutableStateOf(1)
     }
+
+    val goldToPay = viewModel.representTotalGold(
+        checkedMonsters.value!!,
+        Week(weekNumber.value)
+    ).observeAsState()
 
     val additionPadding by animateDpAsState(
         targetValue =
@@ -68,15 +73,13 @@ Surface(
         modifier = Modifier
             .fillMaxHeight()
             .clickable {
-                if (!expanded.value) {
-                    expanded.value = !expanded.value
-                }
+                if (!expanded.value) {expanded.value = !expanded.value}
                 collectedData.value = !collectedData.value
-                viewModel.showHealth(Week(week.value))
-                if (checkedMonsters.value != null && !checkedMonsters.value.isNullOrEmpty()) {
-                    viewModel.showGold(checkedMonsters.value!!, Week(week.value))
+
+                /*if (checkedMonsters.value != null && !checkedMonsters.value.isNullOrEmpty()) {
+                    goldToPay
                 }
-                else(viewModel.setZeroGoldIndication())
+                else(zeroGoldSet)*/
 
                 collectedData.value = true
             }
@@ -120,7 +123,7 @@ Surface(
                 Text(text = "Accumulated HealthPoints : ".plus(healthPoints.value!!.health.toString()),
                         style = MaterialTheme.typography.titleSmall
                     )
-                Text(text = "Week count : ".plus(week.value),
+                Text(text = "Week count : ".plus(weekNumber.value),
                     style = MaterialTheme.typography.titleSmall
                 )
                 Text(text = "Gold to Pay : ".plus(goldToPay.value),
@@ -135,8 +138,8 @@ Surface(
                 Spacer(modifier = Modifier.weight(.6f))
                 Button(onClick =
                 {
-                    week.value++
-                    if(week.value == USELESS_WEEK_VALUE){week.value = START_WEEK_VALUE}
+                    weekNumber.value++
+                    if(weekNumber.value == USELESS_WEEK_VALUE){weekNumber.value = START_WEEK_VALUE}
                          }) {
                     Text(text = "Add week")
                 }

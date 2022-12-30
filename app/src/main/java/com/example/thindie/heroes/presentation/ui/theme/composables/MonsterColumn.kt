@@ -13,12 +13,13 @@ import androidx.compose.runtime.State
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.thindie.heroes.domain.entities.Monster
+import com.example.thindie.heroes.presentation.CHECKED
+import com.example.thindie.heroes.presentation.EXPANDED
 import com.example.thindie.heroes.presentation.HeroesViewModel
 import com.example.thindie.heroes.presentation.SEARCH_BY_LEVEL
 
 @Composable
 fun MonsterColumn(
-    modifier: Modifier = Modifier,
     viewModel: HeroesViewModel,
     list: State<List<Monster>?>
 ) {
@@ -26,32 +27,34 @@ fun MonsterColumn(
 
         LazyColumn(
             contentPadding = PaddingValues(horizontal = 1.dp),
-            modifier = modifier
+            modifier = Modifier
                 .fillMaxHeight()
                 .fillMaxWidth()
             ) {
             items(list.value!!) { monster ->
                 MonsterCard(
                     monster = monster,
-                    modifier = Modifier,
                     checked = monster.checkedToCalculate.first,
                     expanded = monster.expandToDetailView.first,
                     onClickExpanded = {
-                        viewModel.changeStatus(
-                            onChangedMonster =  monster ,
-                            monster.expandToDetailView,
-                            list.value!!
+                        viewModel.representUserBehavior(
+                           EXPANDED,
+                            monster,
+                            list.value
                         )
                     },
                     onClickChecked = {
-                        viewModel.changeStatus(
-                            onChangedMonster =  monster ,
-                            monster.checkedToCalculate,
-                            list.value!!
+                        viewModel.representUserBehavior(
+                            CHECKED,
+                            monster,
+                            list.value
                         )
                     },
                     onClickCoLevel = {
-                        viewModel.searchEngine(SEARCH_BY_LEVEL, monster)
+                        viewModel.representUserBehavior(SEARCH_BY_LEVEL,
+                            monster,
+                        list.value
+                            )
                     }
                 )
             }

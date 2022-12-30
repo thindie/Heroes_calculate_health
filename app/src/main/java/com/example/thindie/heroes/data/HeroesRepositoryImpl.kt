@@ -11,14 +11,14 @@ import com.example.thindie.heroes.presentation.CASTLE_MULTIPLIER
 class HeroesRepositoryImpl(application: Application) : HeroesRepository {
     private val growthMapper = GrowthMapper()
     private val fractionData = FractionData(RawResourceReader(application))
-
+    private val monsterList = fractionData.getAllCreatures()
 
 
     override fun getAllCreatures(): List<Monster> {
-        return fractionData.getAllCreatures()
+        return monsterList
     }
 
-    override fun getAllFractions(): List<FractionPair>  {
+    override fun getAllFractions(): List<FractionToImage>  {
         return fractionData.getFractionImage()
     }
 

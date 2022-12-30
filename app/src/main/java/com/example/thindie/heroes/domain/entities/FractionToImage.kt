@@ -1,6 +1,6 @@
 package com.example.thindie.heroes.domain.entities
 
-data class FractionPair (
+data class FractionToImage (
     val fraction: Fraction,
     val IMG_url: String
 )

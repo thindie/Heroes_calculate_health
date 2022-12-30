@@ -26,7 +26,6 @@ import com.example.thindie.heroes.presentation.ui.theme.HeroesTheme
 @Composable
 fun MonsterCard(
     monster: Monster,
-    modifier: Modifier = Modifier,
     expanded: Boolean,
     onClickExpanded: ()-> Unit,
     checked: Boolean,
@@ -94,20 +93,20 @@ fun MonsterCard(
             Checkbox(
                 checked = checked,
                 onCheckedChange = onClickChecked,
-                modifier = modifier
+                modifier = Modifier
                     .padding(end = 8.dp)
                     .scale(0.7f)
             )
 
             IconButton(
                 onClick = onClickExpanded,
-                modifier = modifier
+                modifier = Modifier
             ) {
                 Icon(
                     imageVector = if (expanded) Icons.Filled.ExpandLess else Icons.Filled.ExpandMore,
                     contentDescription = null,
                     tint = MaterialTheme.colorScheme.primary,
-                    modifier = modifier
+                    modifier = Modifier
                 )
             }
 
@@ -129,22 +128,15 @@ fun MonsterCard(
                     style = MaterialTheme.typography.bodyMedium
                 )
                 Row() {
-                    Spacer(modifier = modifier.weight(1f))
+                    Spacer(modifier = Modifier.weight(1f))
                     Button(
                         onClick = onClickCoLevel,
                         shape = ShapeDefaults.Medium,
-                        modifier = modifier
+                        modifier = Modifier
                             .padding(top = 90.dp, end = 10.dp)
                     ) {
                         Text(text = "Co-leveled")
                     }
-                }
-            }
-
-            @Composable
-            fun MonsterCardPreview() {
-                HeroesTheme() {
-
                 }
             }
         }

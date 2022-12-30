@@ -1,6 +1,7 @@
 package com.example.thindie.heroes.presentation.ui.theme.composables
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
@@ -19,14 +20,15 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
-import com.example.thindie.heroes.domain.entities.FractionPair
+import com.example.thindie.heroes.domain.entities.Fraction
+import com.example.thindie.heroes.domain.entities.FractionToImage
 import com.example.thindie.heroes.presentation.HeroesViewModel
 import com.example.thindie.heroes.presentation.ui.theme.HeroesTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FractionElement(
-    fractionPair: FractionPair,
+    fractionToImage: FractionToImage,
     viewModel: HeroesViewModel,
     modifier: Modifier = Modifier,
 ) {
@@ -34,7 +36,8 @@ fun FractionElement(
         color = MaterialTheme.colorScheme.secondaryContainer,
         tonalElevation = 28.dp,
         shadowElevation = 42.dp,
-        onClick = { viewModel.getFraction(fraction = fractionPair.fraction) },
+        onClick = { viewModel.representFractionColumn(fraction = fractionToImage.fraction);
+           },
         modifier = Modifier
             .scale(1f)
             .clip(CircleShape)
@@ -45,12 +48,11 @@ fun FractionElement(
     ) {
 
         Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = modifier
+            horizontalAlignment = Alignment.CenterHorizontally
 
         ) {
             Image(
-                painter = rememberAsyncImagePainter(fractionPair.IMG_url),
+                painter = rememberAsyncImagePainter(fractionToImage.IMG_url),
                 contentDescription = null,
                 contentScale = ContentScale.Fit,
                 modifier = Modifier
@@ -58,7 +60,7 @@ fun FractionElement(
                     .clip(CircleShape)
             )
             Text(
-                text = fractionPair.fraction.name,
+                text = fractionToImage.fraction.name,
                 modifier = Modifier,
                 style = MaterialTheme.typography.bodySmall
             )
@@ -67,11 +69,4 @@ fun FractionElement(
 
 }
 
-@Preview(showBackground = true)
-@Composable
-fun FractionElementPreview() {
-    HeroesTheme() {
-
-    }
-}
 
