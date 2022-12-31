@@ -26,7 +26,7 @@ import com.example.thindie.heroes.presentation.USELESS_WEEK_VALUE
 @Composable
 fun HeroesBottomBar(viewModel: HeroesViewModel, modifier: Modifier) {
     val healthPoints = viewModel.healthPoints.observeAsState()
-    val checkedMonsters = viewModel.representCheckedMonster().observeAsState()
+    val checkedMonsters = viewModel.representCurrentMonsterList.observeAsState()
     val zeroGoldSet = viewModel.representGoldToZero()
 
     val collectedData = remember { mutableStateOf(false) }
@@ -73,7 +73,9 @@ Surface(
         modifier = Modifier
             .fillMaxHeight()
             .clickable {
-                if (!expanded.value) {expanded.value = !expanded.value}
+                if (!expanded.value) {
+                    expanded.value = !expanded.value
+                }
                 collectedData.value = !collectedData.value
 
                 /*if (checkedMonsters.value != null && !checkedMonsters.value.isNullOrEmpty()) {

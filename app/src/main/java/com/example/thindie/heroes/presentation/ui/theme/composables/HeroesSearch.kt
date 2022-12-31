@@ -25,7 +25,7 @@ import com.example.thindie.heroes.presentation.ui.theme.shapes
 fun HeroesSearchBar(viewModel: HeroesViewModel) {
     val keyboardController = LocalSoftwareKeyboardController.current
     val enteredTextOnSearchBar = rememberSaveable { mutableStateOf("") }
-    val allMonsters = viewModel.representTotalMonsterList().observeAsState()
+    val allMonsters = viewModel.representCurrentMonsterList.observeAsState()
 
     Surface(
         color = MaterialTheme.colorScheme.onSecondary,

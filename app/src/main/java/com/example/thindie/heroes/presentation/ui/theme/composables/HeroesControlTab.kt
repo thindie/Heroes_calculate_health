@@ -9,19 +9,16 @@ import androidx.compose.material3.ShapeDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.example.thindie.heroes.domain.entities.Week
 import com.example.thindie.heroes.presentation.CHECKED
 import com.example.thindie.heroes.presentation.HeroesViewModel
 
 @Composable
 fun HeroesControlTab(viewModel: HeroesViewModel){
-    val checkedMonsters = viewModel.representCheckedMonster().observeAsState()
-    val allMonsters = viewModel.representTotalMonsterList().observeAsState()
+    val checkedMonsters = viewModel.representCurrentMonsterList
+
 
     Row(modifier = Modifier.padding(top = 10.dp, bottom = 10.dp)) {
         Column() {
@@ -42,7 +39,7 @@ fun HeroesControlTab(viewModel: HeroesViewModel){
                             }
                             viewModel.representUserBehavior("",
                                     null,
-                                    allMonsters.value!!)
+                                   checkedMonsters.value)
                         }
 
                           })

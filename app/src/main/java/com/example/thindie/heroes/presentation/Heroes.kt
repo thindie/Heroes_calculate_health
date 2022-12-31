@@ -5,6 +5,7 @@ import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -24,8 +25,7 @@ fun Heroes(
 
     HeroesTheme {
         val showFractionsRow = viewModel.representFractionRow().observeAsState()
-        var showMonsterColumn = viewModel.representTotalMonsterList().observeAsState()
-
+        val totalMonsterList = viewModel.representCurrentMonsterList.observeAsState()
 
         Surface(
             color = MaterialTheme.colorScheme.surface,
@@ -46,7 +46,7 @@ fun Heroes(
 
                 MonsterColumn(
                     viewModel,
-                    showMonsterColumn
+                    totalMonsterList
                 )
                 Spacer(modifier = modifier.height(2.dp))
                 HeroesBottomBar(viewModel = viewModel, modifier = Modifier.weight(.1f) )

@@ -19,24 +19,21 @@ import com.example.thindie.heroes.presentation.ui.theme.HeroesTheme
 
 @Composable
 fun FractionRow(
-    list: State<List<FractionToImage>?>,
+    fractionToImageRow: State<List<FractionToImage>?>,
     viewModel: HeroesViewModel,
     modifier: Modifier = Modifier
 ) {
-    Surface(color = MaterialTheme.colorScheme.onSecondary, modifier = modifier)   {
+    Surface(color = MaterialTheme.colorScheme.onSecondary, modifier = modifier) {
         LazyRow(
             horizontalArrangement = Arrangement.spacedBy(2.dp),
             contentPadding = PaddingValues(horizontal = 2.dp),
             modifier = modifier.padding(top = 3.dp, bottom = 3.dp),
 
             ) {
-            items(list.value!!) { fraction ->
-                FractionElement(
-                    fractionToImage = fraction,
-                    viewModel = viewModel,
-                )
+            items(fractionToImageRow.value!!) { fractionToImage ->
+                FractionElement(fractionToImage = fractionToImage, viewModel = viewModel)
             }
         }
-    }
 
+    }
 }

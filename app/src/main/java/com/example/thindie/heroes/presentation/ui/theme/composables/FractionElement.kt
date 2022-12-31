@@ -30,7 +30,6 @@ import com.example.thindie.heroes.presentation.ui.theme.HeroesTheme
 fun FractionElement(
     fractionToImage: FractionToImage,
     viewModel: HeroesViewModel,
-    modifier: Modifier = Modifier,
 ) {
     Surface(
         color = MaterialTheme.colorScheme.secondaryContainer,
