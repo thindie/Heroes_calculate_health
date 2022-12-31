@@ -25,7 +25,7 @@ fun Heroes(
 
     HeroesTheme {
         val showFractionsRow = viewModel.representFractionRow().observeAsState()
-        val totalMonsterList = viewModel.representCurrentMonsterList.observeAsState()
+        val currentMonsterList = viewModel.representCurrentMonsterList.observeAsState()
 
         Surface(
             color = MaterialTheme.colorScheme.surface,
@@ -46,10 +46,12 @@ fun Heroes(
 
                 MonsterColumn(
                     viewModel,
-                    totalMonsterList
+                    currentMonsterList,
+                    modifier = modifier.fillMaxWidth()
+                        .fillMaxHeight(0.7f)
                 )
-                Spacer(modifier = modifier.height(2.dp))
-                HeroesBottomBar(viewModel = viewModel, modifier = Modifier.weight(.1f) )
+                HeroesBottomBar(viewModel = viewModel,
+                modifier = modifier.fillMaxHeight())
             }
 
         }

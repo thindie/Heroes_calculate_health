@@ -11,11 +11,10 @@ import com.example.thindie.heroes.domain.CASTLE_MULTIPLIER
 class HeroesRepositoryImpl(application: Application) : HeroesRepository {
     private val growthMapper = GrowthMapper()
     private val fractionData = FractionData(RawResourceReader(application))
-    private val monsterList = fractionData.getAllCreatures()
 
 
     override fun getAllCreatures(): List<Monster> {
-        return monsterList
+        return fractionData.getAllCreatures()
     }
 
     override fun getAllFractions(): List<FractionToImage>  {
@@ -39,9 +38,8 @@ class HeroesRepositoryImpl(application: Application) : HeroesRepository {
         return HealthPoints(points)
     }
 
-    override fun collectAllCountableMonsters(): List<Monster> {
+    override fun collectAllCountableMonsters(allMonsterList: List<Monster>): List<Monster> {
         val resultList = mutableListOf<Monster>()
-        val allMonsterList = getAllCreatures()
         allMonsterList.forEach {
             monster ->
             if(monster.checkedToCalculate.first){

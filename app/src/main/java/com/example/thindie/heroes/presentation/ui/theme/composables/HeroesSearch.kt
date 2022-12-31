@@ -25,8 +25,7 @@ import com.example.thindie.heroes.presentation.ui.theme.shapes
 fun HeroesSearchBar(viewModel: HeroesViewModel) {
     val keyboardController = LocalSoftwareKeyboardController.current
     val enteredTextOnSearchBar = rememberSaveable { mutableStateOf("") }
-    val allMonsters = viewModel.representCurrentMonsterList.observeAsState()
-
+    val allMonsters = viewModel.representAllMonsterList.observeAsState()
     Surface(
         color = MaterialTheme.colorScheme.onSecondary,
         modifier = Modifier
@@ -39,7 +38,6 @@ fun HeroesSearchBar(viewModel: HeroesViewModel) {
         TextField(
             value = enteredTextOnSearchBar.value,
             onValueChange = { string -> enteredTextOnSearchBar.value = string;
-                            enteredTextOnSearchBar.value =""
                             },
             leadingIcon = {
                 Icon(
@@ -56,6 +54,7 @@ fun HeroesSearchBar(viewModel: HeroesViewModel) {
                                     allMonsters.value
                                 )
                                 keyboardController!!.hide()
+                                enteredTextOnSearchBar.value = ""
                             }
                         )
                         .scale(1.3f)

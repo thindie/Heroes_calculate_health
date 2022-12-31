@@ -5,7 +5,7 @@ import com.example.thindie.heroes.domain.entities.Fraction
 import com.example.thindie.heroes.domain.entities.Monster
 
 class CollectAllCountableMonstersUseCase (private val heroesRepository: HeroesRepository) {
-    fun collectCountable() : List<Monster>{
-        return heroesRepository.collectAllCountableMonsters()
+    fun collectCountable(allMonsterList: List<Monster>) : List<Monster>{
+        return heroesRepository.collectAllCountableMonsters(allMonsterList)
     }
 }

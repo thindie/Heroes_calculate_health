@@ -1,13 +1,13 @@
 package com.example.thindie.heroes.presentation
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.thindie.heroes.data.HeroesRepositoryImpl
 import com.example.thindie.heroes.domain.CHECKED
 import com.example.thindie.heroes.domain.EXPANDED
-import com.example.thindie.heroes.domain.SEARCH_BY_FRACTION
 import com.example.thindie.heroes.domain.SEARCH_BY_LEVEL
 import com.example.thindie.heroes.domain.entities.*
 import com.example.thindie.heroes.domain.useCases.*
@@ -18,32 +18,35 @@ class HeroesViewModel(application: Application) : AndroidViewModel(application) 
     private val getFractionUseCase = GetFractionUseCase(heroesRepository)
     private val getMonsterUseCase = GetMonsterUseCase(heroesRepository)
     private val getAllFractionsUseCase = GetAllFractionsUseCase(heroesRepository)
-    private val collectAllCountableMonstersUseCase = CollectAllCountableMonstersUseCase(heroesRepository)
+    private val collectAllCountableMonstersUseCase =
+        CollectAllCountableMonstersUseCase(heroesRepository)
     private val accumulateGoldUseCase = AccumulateGoldUseCase(heroesRepository)
     private val getAllCreaturesUseCase = GetAllCreaturesUseCase(heroesRepository)
 
     private val checkedMonsterList: MutableList<Monster> = mutableListOf()
-    private val fractionList: MutableList<Monster> = mutableListOf()
-    private val allMonsterList: MutableList<Monster> = mutableListOf()
 
     private val _healthPoints = MutableLiveData<HealthPoints>()
-    val   healthPoints: LiveData<HealthPoints>
+    val healthPoints: LiveData<HealthPoints>
         get() = _healthPoints
 
     private val _representCurrentMonsterList = MutableLiveData<List<Monster>>()
-    val    representCurrentMonsterList: LiveData<List<Monster>>
+    val representCurrentMonsterList: LiveData<List<Monster>>
         get() = _representCurrentMonsterList
+
+    private val _representAllMonsterList = MutableLiveData<List<Monster>>()
+    val representAllMonsterList: LiveData<List<Monster>>
+        get() = _representAllMonsterList
 
     init {
         representTotalMonsterList()
-
     }
 
-    private fun representTotalMonsterList()   {
-       _representCurrentMonsterList.value =  getAllCreaturesUseCase.getAllCreatures() .toList()
+    private fun representTotalMonsterList() {
+        _representAllMonsterList.value = getAllCreaturesUseCase.getAllCreatures()
+        _representCurrentMonsterList.value = getAllCreaturesUseCase.getAllCreatures()
     }
 
-    fun representFractionRow() : LiveData<List<FractionToImage>> {
+    fun representFractionRow(): LiveData<List<FractionToImage>> {
         val dataToShow = MutableLiveData<List<FractionToImage>>()
         checkedMonsterList.clear()
         dataToShow.value = getAllFractionsUseCase.getAllFractions()
@@ -52,18 +55,19 @@ class HeroesViewModel(application: Application) : AndroidViewModel(application) 
 
     fun representFractionColumn(fraction: Fraction) {
         checkedMonsterList.clear()
-         _representCurrentMonsterList.value = getFractionUseCase.getFraction(fraction).toList()
+        _representCurrentMonsterList.value = getFractionUseCase.getFraction(fraction).toList()
 
     }
 
     fun representCheckedMonsterList() {
-       _representCurrentMonsterList.value = checkedMonsterList.toList()
+        collectAllCountableMonstersUseCase.collectCountable(checkedMonsterList)
     }
 
-    fun representUserBehavior(paramOrMonsterName: String,
-                             incomingMonster: Monster?,
-                             incomingList: List<Monster>?,)
-    {
+    fun representUserBehavior(
+        paramOrMonsterName: String,
+        incomingMonster: Monster?,
+        incomingList: List<Monster>?,
+    ) {
         checkedMonsterList.clear()
         val searchingList: MutableList<Monster> = mutableListOf()
         when (paramOrMonsterName) {
@@ -80,7 +84,8 @@ class HeroesViewModel(application: Application) : AndroidViewModel(application) 
                     if (monster.name == incomingMonster?.name)
                         searchingList.add(
                             monster.copy(
-                                expandToDetailView = !monster.expandToDetailView.first to EXPANDED
+                                expandToDetailView = !monster.expandToDetailView.first to EXPANDED,
+                                fraction = monster.fraction
                             )
                         )
                     else {
@@ -90,82 +95,65 @@ class HeroesViewModel(application: Application) : AndroidViewModel(application) 
             }
 
             CHECKED -> {
+                checkedMonsterList.clear()
                 incomingList?.forEach { monster ->
-                    if (monster.name == incomingMonster?.name)
-                        searchingList.add(
-                            monster.copy(
-                                checkedToCalculate = !monster.checkedToCalculate.first to CHECKED
-                            )
+                    if (monster.name == incomingMonster?.name) {
+
+                        val monsterToAdd = monster.copy(
+                            checkedToCalculate = !monster.checkedToCalculate.first to CHECKED,
+                            fraction = monster.fraction
                         )
-                    else {
+                        checkedMonsterList.add(monsterToAdd)
+                        searchingList.add(monsterToAdd)
+                    } else {
                         searchingList.add(monster)
+                        checkedMonsterList.add(monster)
                     }
                 }
             }
 
-            SEARCH_BY_FRACTION -> {
-                searchingList.addAll(fractionList)
-            }
-
             paramOrMonsterName -> {
-                 incomingList?.forEach { monster ->
+                incomingList?.forEach { monster ->
                     if (monster.name.lowercase()
                             .contains(paramOrMonsterName.lowercase().trim())
                     )
                         searchingList.add(monster)
                 }
-                if (searchingList.size == 1) {
-                    val correctedList = correctSingleMonsterList(searchingList);
-                    searchingList.clear()
-                    searchingList.addAll(correctedList)
-                }
-
             }
 
         }
+
         _representCurrentMonsterList.value = searchingList.toList()
+        Log.d("SERVICE", "viewModel UserBehav")
+        Log.d("SERVICE", checkedMonsterList.toString())
     }
 
-    fun representGoldToZero(): MutableLiveData<Int> {
+    private fun representGoldToZero(): MutableLiveData<Int> {
         val dataToShow = MutableLiveData<Int>()
         dataToShow.value = 0
         return dataToShow
     }
 
     fun representCountedHealth(week: Week?) {
-        if(week == null){
-            val chosenMonsters = collectAllCountableMonstersUseCase.collectCountable()
-            val healthPoints = calculateGrowthUseCase.calculateGrowth(week = Week(), list = chosenMonsters)
+        if (week == null) {
+            val chosenMonsters = collectAllCountableMonstersUseCase.collectCountable(checkedMonsterList)
+            val healthPoints =
+                calculateGrowthUseCase.calculateGrowth(week = Week(), list = chosenMonsters)
             _healthPoints.value = healthPoints
-        }
-        else{
-            val chosenMonsters = collectAllCountableMonstersUseCase.collectCountable()
-            val healthPoints = calculateGrowthUseCase.calculateGrowth(week = week, list = chosenMonsters)
+        } else {
+            val chosenMonsters = collectAllCountableMonstersUseCase.collectCountable(checkedMonsterList)
+            val healthPoints =
+                calculateGrowthUseCase.calculateGrowth(week = week, list = chosenMonsters)
             _healthPoints.value = healthPoints
         }
 
-       }
+    }
 
-    fun representTotalGold(list: List<Monster>, week: Week): MutableLiveData<Int> {
+    fun representTotalGold(list: List<Monster>?, week: Week): MutableLiveData<Int> {
         val dataToShow = MutableLiveData<Int>()
-        dataToShow.value = accumulateGoldUseCase.accumulateGoldUseCase(list,week)
-        return   dataToShow
-    }
-
-    private fun addCheckedMonsterToObserveList(string: String) {
-        checkedMonsterList.add(getMonsterUseCase.getMonster(string))
-    }
-
-    private fun removeCheckedMonsterFromObserveList(string: String){
-        checkedMonsterList.remove(getMonsterUseCase.getMonster(string))
-    }
-
-    private fun correctSingleMonsterList(list: MutableList<Monster>) : MutableList<Monster>{
-        val resultList = mutableListOf<Monster>()
-        val mon = list[0]
-        val fraction = getFractionUseCase.getFraction(mon.fraction)
-        fraction.forEach { if(mon.level == it.level){resultList.add(it)} }
-        return resultList
+        if (list == null) return representGoldToZero()
+        dataToShow.value = accumulateGoldUseCase.accumulateGoldUseCase(list, week)
+        return dataToShow
     }
 
 }
