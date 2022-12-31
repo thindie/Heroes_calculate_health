@@ -1,7 +1,7 @@
 package com.example.thindie.heroes.presentation.ui.theme.composables
 
 
-import android.util.Log
+
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateDpAsState
@@ -35,17 +35,14 @@ fun HeroesBottomBar(viewModel: HeroesViewModel, modifier: Modifier) {
     }
     val healthPoints = viewModel.healthPoints.observeAsState()
     val checkedMonsters = viewModel.representCurrentMonsterList.observeAsState()
-    val goldToPay = viewModel.representTotalGold(
-        checkedMonsters.value!!,
-        Week(weekNumber.value)
-    ).observeAsState()
+    val goldToPay = viewModel.actualGoldCost.observeAsState()
 
     val additionPadding by animateDpAsState(
-        targetValue =
+            targetValue =
         if (expanded.value) {
             320.dp
         } else {
-            150.dp
+            160.dp
         },
         animationSpec = spring(
             dampingRatio = Spring.DampingRatioLowBouncy,
@@ -61,10 +58,9 @@ fun HeroesBottomBar(viewModel: HeroesViewModel, modifier: Modifier) {
         targetValue = MaterialTheme.colorScheme.surface
     )
 
-
     Surface(
         color = if (expanded.value) changingColorIn.value else changingColorOut.value,
-        modifier = modifier
+        modifier = Modifier
             .height(additionPadding)
     ) {
         Row(
@@ -73,10 +69,14 @@ fun HeroesBottomBar(viewModel: HeroesViewModel, modifier: Modifier) {
                 .fillMaxHeight()
                 .clickable {
                     if (!expanded.value) {
-                        viewModel.representCheckedMonsterList()
-                        Log.d("SERVICE", "representCheckinglist")
                         expanded.value = !expanded.value
                     }
+                    viewModel.representCheckedMonsterList()
+                    viewModel.representCountedHealth(Week(weekNumber = weekNumber.value))
+                    viewModel.representTotalGold(
+                        checkedMonsters.value!!,
+                        Week(weekNumber.value)
+                    )
                 }
         ) {
             Spacer(modifier = Modifier.weight(0.3f))

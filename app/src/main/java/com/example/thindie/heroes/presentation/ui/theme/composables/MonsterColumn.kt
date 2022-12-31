@@ -1,5 +1,6 @@
 package com.example.thindie.heroes.presentation.ui.theme.composables
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.PaddingValues
 
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -18,6 +19,7 @@ import com.example.thindie.heroes.domain.EXPANDED
 import com.example.thindie.heroes.presentation.HeroesViewModel
 import com.example.thindie.heroes.domain.SEARCH_BY_LEVEL
 
+@SuppressLint("SuspiciousIndentation")
 @Composable
 fun MonsterColumn(
     viewModel: HeroesViewModel,
@@ -31,7 +33,7 @@ fun MonsterColumn(
             contentPadding = PaddingValues(horizontal = 1.dp),
             modifier = modifier
                 .fillMaxWidth()
-                .fillMaxHeight(0.75f)
+                .fillMaxHeight()
             ) {
             items(currentMonsterList.value!!) { monster ->
                 MonsterCard(

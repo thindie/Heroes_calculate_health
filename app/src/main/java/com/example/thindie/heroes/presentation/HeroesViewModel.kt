@@ -29,6 +29,10 @@ class HeroesViewModel(application: Application) : AndroidViewModel(application) 
     val healthPoints: LiveData<HealthPoints>
         get() = _healthPoints
 
+    private val _actualGoldCost = MutableLiveData<Int>()
+    val  actualGoldCost: LiveData<Int>
+        get() = _actualGoldCost
+
     private val _representCurrentMonsterList = MutableLiveData<List<Monster>>()
     val representCurrentMonsterList: LiveData<List<Monster>>
         get() = _representCurrentMonsterList
@@ -136,12 +140,14 @@ class HeroesViewModel(application: Application) : AndroidViewModel(application) 
 
     fun representCountedHealth(week: Week?) {
         if (week == null) {
-            val chosenMonsters = collectAllCountableMonstersUseCase.collectCountable(checkedMonsterList)
+            val chosenMonsters =
+                collectAllCountableMonstersUseCase.collectCountable(checkedMonsterList)
             val healthPoints =
                 calculateGrowthUseCase.calculateGrowth(week = Week(), list = chosenMonsters)
             _healthPoints.value = healthPoints
         } else {
-            val chosenMonsters = collectAllCountableMonstersUseCase.collectCountable(checkedMonsterList)
+            val chosenMonsters =
+                collectAllCountableMonstersUseCase.collectCountable(checkedMonsterList)
             val healthPoints =
                 calculateGrowthUseCase.calculateGrowth(week = week, list = chosenMonsters)
             _healthPoints.value = healthPoints
@@ -149,11 +155,12 @@ class HeroesViewModel(application: Application) : AndroidViewModel(application) 
 
     }
 
-    fun representTotalGold(list: List<Monster>?, week: Week): MutableLiveData<Int> {
-        val dataToShow = MutableLiveData<Int>()
-        if (list == null) return representGoldToZero()
-        dataToShow.value = accumulateGoldUseCase.accumulateGoldUseCase(list, week)
-        return dataToShow
+    fun representTotalGold(list: List<Monster>?, week: Week) {
+
+        if (list == null) {
+            representGoldToZero(); return
+        }
+        _actualGoldCost.value = accumulateGoldUseCase.accumulateGoldUseCase(list, week)
     }
 
 }
