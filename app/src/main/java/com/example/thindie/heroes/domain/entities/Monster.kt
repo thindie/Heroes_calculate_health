@@ -1,5 +1,8 @@
 package com.example.thindie.heroes.domain.entities
 
+import com.example.thindie.heroes.domain.CHECKED
+import com.example.thindie.heroes.domain.EXPANDED
+
 data class Monster (
     val name: String,
     val attack: Int,
@@ -13,7 +16,7 @@ data class Monster (
     var fraction: Fraction = Fraction.CITADEL,
     val level: MonsterLevel,
     var IMG_url: String?,
-    var checkedToCalculate: Pair<Boolean, String> = false to "checked",
-    var expandToDetailView: Pair<Boolean, String> = false to "expanded"
+    val checkedToCalculate: Pair<Boolean, String> = false to CHECKED,
+    val expandToDetailView: Pair<Boolean, String> = false to EXPANDED
 )
 

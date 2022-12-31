@@ -5,6 +5,10 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.thindie.heroes.data.HeroesRepositoryImpl
+import com.example.thindie.heroes.domain.CHECKED
+import com.example.thindie.heroes.domain.EXPANDED
+import com.example.thindie.heroes.domain.SEARCH_BY_FRACTION
+import com.example.thindie.heroes.domain.SEARCH_BY_LEVEL
 import com.example.thindie.heroes.domain.entities.*
 import com.example.thindie.heroes.domain.useCases.*
 
@@ -65,14 +69,14 @@ class HeroesViewModel(application: Application) : AndroidViewModel(application) 
         when (paramOrMonsterName) {
 
             SEARCH_BY_LEVEL -> {
-                allMonsterList.forEach { monster ->
+                incomingList?.forEach { monster ->
                     if (monster.level == incomingMonster?.level)
                         searchingList.add(monster)
                 }
             }
 
             EXPANDED -> {
-                incomingList!!.forEach { monster ->
+                incomingList?.forEach { monster ->
                     if (monster.name == incomingMonster?.name)
                         searchingList.add(
                             monster.copy(
@@ -86,7 +90,7 @@ class HeroesViewModel(application: Application) : AndroidViewModel(application) 
             }
 
             CHECKED -> {
-                incomingList!!.forEach { monster ->
+                incomingList?.forEach { monster ->
                     if (monster.name == incomingMonster?.name)
                         searchingList.add(
                             monster.copy(
@@ -104,7 +108,7 @@ class HeroesViewModel(application: Application) : AndroidViewModel(application) 
             }
 
             paramOrMonsterName -> {
-                allMonsterList.forEach { monster ->
+                 incomingList?.forEach { monster ->
                     if (monster.name.lowercase()
                             .contains(paramOrMonsterName.lowercase().trim())
                     )

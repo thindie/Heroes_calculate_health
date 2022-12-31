@@ -8,11 +8,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ShapeDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.example.thindie.heroes.presentation.CHECKED
+import com.example.thindie.heroes.domain.CHECKED
 import com.example.thindie.heroes.presentation.HeroesViewModel
 
 @Composable

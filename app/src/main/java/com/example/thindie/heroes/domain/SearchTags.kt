@@ -1,4 +1,4 @@
-package com.example.thindie.heroes.presentation
+package com.example.thindie.heroes.domain
 
 const val SEARCH_BY_LEVEL = "level"
 const val SEARCH_BY_FRACTION = "fraction"

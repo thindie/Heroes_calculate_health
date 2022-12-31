@@ -6,7 +6,7 @@ import com.example.thindie.heroes.data.local.RawResourceReader
 import com.example.thindie.heroes.data.mappers.GrowthMapper
 import com.example.thindie.heroes.domain.HeroesRepository
 import com.example.thindie.heroes.domain.entities.*
-import com.example.thindie.heroes.presentation.CASTLE_MULTIPLIER
+import com.example.thindie.heroes.domain.CASTLE_MULTIPLIER
 
 class HeroesRepositoryImpl(application: Application) : HeroesRepository {
     private val growthMapper = GrowthMapper()

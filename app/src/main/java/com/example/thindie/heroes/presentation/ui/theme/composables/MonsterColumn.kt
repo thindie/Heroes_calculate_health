@@ -4,7 +4,6 @@ import androidx.compose.foundation.layout.PaddingValues
 
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -13,10 +12,10 @@ import androidx.compose.runtime.State
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.thindie.heroes.domain.entities.Monster
-import com.example.thindie.heroes.presentation.CHECKED
-import com.example.thindie.heroes.presentation.EXPANDED
+import com.example.thindie.heroes.domain.CHECKED
+import com.example.thindie.heroes.domain.EXPANDED
 import com.example.thindie.heroes.presentation.HeroesViewModel
-import com.example.thindie.heroes.presentation.SEARCH_BY_LEVEL
+import com.example.thindie.heroes.domain.SEARCH_BY_LEVEL
 
 @Composable
 fun MonsterColumn(
@@ -51,7 +50,8 @@ fun MonsterColumn(
                         )
                     },
                     onClickCoLevel = {
-                        viewModel.representUserBehavior(SEARCH_BY_LEVEL,
+                        viewModel.representUserBehavior(
+                            SEARCH_BY_LEVEL,
                             monster,
                         list.value
                             )

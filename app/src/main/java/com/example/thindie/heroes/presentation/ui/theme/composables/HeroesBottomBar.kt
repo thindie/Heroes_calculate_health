@@ -20,8 +20,8 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.unit.dp
 import com.example.thindie.heroes.domain.entities.Week
 import com.example.thindie.heroes.presentation.HeroesViewModel
-import com.example.thindie.heroes.presentation.START_WEEK_VALUE
-import com.example.thindie.heroes.presentation.USELESS_WEEK_VALUE
+import com.example.thindie.heroes.domain.START_WEEK_VALUE
+import com.example.thindie.heroes.domain.USELESS_WEEK_VALUE
 
 @Composable
 fun HeroesBottomBar(viewModel: HeroesViewModel, modifier: Modifier) {
@@ -141,7 +141,8 @@ Surface(
                 Button(onClick =
                 {
                     weekNumber.value++
-                    if(weekNumber.value == USELESS_WEEK_VALUE){weekNumber.value = START_WEEK_VALUE}
+                    if(weekNumber.value == USELESS_WEEK_VALUE){weekNumber.value = START_WEEK_VALUE
+                    }
                          }) {
                     Text(text = "Add week")
                 }
