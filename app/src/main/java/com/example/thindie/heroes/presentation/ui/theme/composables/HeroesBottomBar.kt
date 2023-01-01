@@ -5,9 +5,6 @@ import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.spring
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
@@ -19,9 +16,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.example.thindie.heroes.domain.START_WEEK_VALUE
 import com.example.thindie.heroes.domain.USELESS_WEEK_VALUE
@@ -52,7 +47,7 @@ fun HeroesBottomBar(
     val additionPadding by animateDpAsState(
         targetValue =
         if (expanded.value) {
-            350.dp
+            430.dp
         } else {
             50.dp
         },
@@ -83,26 +78,23 @@ fun HeroesBottomBar(
 
             if (!expanded.value) {
                 Spacer(modifier = Modifier.weight(0.3f))
-                Text(
-                    text = " Count Health ",
-                    style = MaterialTheme.typography.titleSmall,
-                    modifier = Modifier
-                        .padding(top = 10.dp,   start = 10.dp, end = 10.dp)
-                        .clip(ShapeDefaults.ExtraLarge)
-                        .align(Alignment.CenterVertically)
-                        .border(border = BorderStroke(Dp.Hairline,MaterialTheme.colorScheme.onSurfaceVariant))
-                        .clickable {
-                            viewModel.representCheckedMonsterList()
-                            viewModel.representCountedHealth(Week(weekNumber = weekNumber.value))
-                            viewModel.representTotalGold(
-                                checkedMonsters.value!!,
-                                Week(weekNumber.value)
-                            )
-                            expanded.value = !expanded.value
-                            expandedInBottomBar(expanded.value)
-
-                        }
+                Button(
+                    onClick = {
+                        viewModel.representCheckedMonsterList()
+                        viewModel.representCountedHealth(Week(weekNumber = weekNumber.value))
+                        viewModel.representTotalGold(
+                            checkedMonsters.value!!,
+                            Week(weekNumber.value)
+                        )
+                        expanded.value = !expanded.value
+                        expandedInBottomBar(expanded.value)
+                    },
+                    modifier = Modifier.padding(end = 10.dp)
+                        .scale(0.9f)
                 )
+                {
+                    Text(text = "Count health")
+                }
             }
 
 
@@ -168,7 +160,8 @@ fun HeroesBottomBar(
                                 )
 
                             },
-                            modifier = modifier.padding(start = 5.dp)
+                            modifier = modifier
+                                .padding(start = 5.dp)
                                 .scale(0.9f)
                         ) {
                             Text(text = "Calculate")
@@ -182,13 +175,20 @@ fun HeroesBottomBar(
                                     weekNumber.value = START_WEEK_VALUE
                                 }
                             },
-                            modifier = modifier.padding(end = 5.dp)
+                            modifier = modifier
+                                .padding(end = 5.dp)
                                 .scale(0.9f)
                         ) {
                             Text(text = "Add week")
                         }
                     }
+                    Row(
+                        Modifier
+                            .fillMaxWidth()
+                            .size(width = 40.dp, height = 40.dp)
+                    ) {
 
+                    }
                 }
 
 
@@ -196,6 +196,7 @@ fun HeroesBottomBar(
         }
     }
 }
+
 
 
 
