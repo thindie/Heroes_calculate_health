@@ -16,7 +16,6 @@ class HeroesViewModel(application: Application) : AndroidViewModel(application) 
     private val heroesRepository = HeroesRepositoryImpl(application)
     private val calculateGrowthUseCase = CalculateGrowthUseCase(heroesRepository)
     private val getFractionUseCase = GetFractionUseCase(heroesRepository)
-    private val getMonsterUseCase = GetMonsterUseCase(heroesRepository)
     private val getAllFractionsUseCase = GetAllFractionsUseCase(heroesRepository)
     private val collectAllCountableMonstersUseCase =
         CollectAllCountableMonstersUseCase(heroesRepository)
@@ -30,7 +29,7 @@ class HeroesViewModel(application: Application) : AndroidViewModel(application) 
         get() = _healthPoints
 
     private val _actualGoldCost = MutableLiveData<Int>()
-    val  actualGoldCost: LiveData<Int>
+    val actualGoldCost: LiveData<Int>
         get() = _actualGoldCost
 
     private val _representCurrentMonsterList = MutableLiveData<List<Monster>>()
@@ -132,10 +131,8 @@ class HeroesViewModel(application: Application) : AndroidViewModel(application) 
         Log.d("SERVICE", checkedMonsterList.toString())
     }
 
-    private fun representGoldToZero(): MutableLiveData<Int> {
-        val dataToShow = MutableLiveData<Int>()
-        dataToShow.value = 0
-        return dataToShow
+    private fun representGoldToZero() {
+        _actualGoldCost.value = 0
     }
 
     fun representCountedHealth(week: Week?) {
@@ -156,11 +153,16 @@ class HeroesViewModel(application: Application) : AndroidViewModel(application) 
     }
 
     fun representTotalGold(list: List<Monster>?, week: Week) {
-
         if (list == null) {
             representGoldToZero(); return
+        } else {
+            val listToCount = mutableListOf<Monster>()
+            list.forEach { monster ->
+                if (monster.checkedToCalculate.first) listToCount.add(monster)
+            }
+            _actualGoldCost.value = accumulateGoldUseCase.accumulateGoldUseCase(listToCount, week)
         }
-        _actualGoldCost.value = accumulateGoldUseCase.accumulateGoldUseCase(list, week)
+
     }
 
 }

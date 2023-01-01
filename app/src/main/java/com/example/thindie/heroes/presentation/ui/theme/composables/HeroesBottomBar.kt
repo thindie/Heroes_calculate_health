@@ -1,7 +1,6 @@
 package com.example.thindie.heroes.presentation.ui.theme.composables
 
 
-
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateDpAsState
@@ -25,11 +24,19 @@ import com.example.thindie.heroes.domain.USELESS_WEEK_VALUE
 import com.example.thindie.heroes.domain.entities.Week
 import com.example.thindie.heroes.presentation.HeroesViewModel
 
+
 @Composable
-fun HeroesBottomBar(viewModel: HeroesViewModel, modifier: Modifier) {
+fun HeroesBottomBar(
+    viewModel: HeroesViewModel,
+    expandedInBottomBar: (Boolean) -> Unit,
+    modifier: Modifier
+) {
+
     val expanded = rememberSaveable {
         mutableStateOf(false)
     }
+
+
     val weekNumber = rememberSaveable {
         mutableStateOf(1)
     }
@@ -37,13 +44,15 @@ fun HeroesBottomBar(viewModel: HeroesViewModel, modifier: Modifier) {
     val checkedMonsters = viewModel.representCurrentMonsterList.observeAsState()
     val goldToPay = viewModel.actualGoldCost.observeAsState()
 
+
     val additionPadding by animateDpAsState(
-            targetValue =
+        targetValue =
         if (expanded.value) {
-            320.dp
+            250.dp
         } else {
-            160.dp
+            40.dp
         },
+
         animationSpec = spring(
             dampingRatio = Spring.DampingRatioLowBouncy,
             stiffness = Spring.StiffnessLow
@@ -57,36 +66,39 @@ fun HeroesBottomBar(viewModel: HeroesViewModel, modifier: Modifier) {
     val changingColorOut = animateColorAsState(
         targetValue = MaterialTheme.colorScheme.surface
     )
-
     Surface(
         color = if (expanded.value) changingColorIn.value else changingColorOut.value,
-        modifier = Modifier
-            .height(additionPadding)
+        modifier = modifier
+            .requiredHeightIn(120.dp, max = additionPadding)
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier
-                .fillMaxHeight()
-                .clickable {
-                    if (!expanded.value) {
-                        expanded.value = !expanded.value
-                    }
-                    viewModel.representCheckedMonsterList()
-                    viewModel.representCountedHealth(Week(weekNumber = weekNumber.value))
-                    viewModel.representTotalGold(
-                        checkedMonsters.value!!,
-                        Week(weekNumber.value)
-                    )
-                }
+            modifier = modifier
+
         ) {
+
             Spacer(modifier = Modifier.weight(0.3f))
-            Text(
-                text = "Count Health",
-                style = MaterialTheme.typography.titleSmall,
-                modifier = Modifier
-                    .padding(top = 1.dp, bottom = 2.dp)
-                    .align(if (expanded.value) Alignment.Top else Alignment.CenterVertically)
-            )
+            if (!expanded.value) {
+                Text(
+                    text = "Count Health",
+                    style = MaterialTheme.typography.titleSmall,
+                    modifier = Modifier
+                        .padding(top = 1.dp, bottom = 2.dp)
+                        .align(Alignment.CenterVertically)
+                        .clickable {
+                            viewModel.representCheckedMonsterList()
+                            viewModel.representCountedHealth(Week(weekNumber = weekNumber.value))
+                            viewModel.representTotalGold(
+                                checkedMonsters.value!!,
+                                Week(weekNumber.value)
+                            )
+                            expanded.value = !expanded.value
+                            expandedInBottomBar(expanded.value)
+
+                        }
+                )
+            }
+
             Spacer(modifier = Modifier.weight(0.3f))
         }
         if (expanded.value) {
@@ -100,6 +112,7 @@ fun HeroesBottomBar(viewModel: HeroesViewModel, modifier: Modifier) {
                     onClick = {
                         if (expanded.value) {
                             expanded.value = !expanded.value
+                            expandedInBottomBar(expanded.value)
                         }
                     },
                     modifier = Modifier.padding(start = 300.dp, top = 25.dp)
@@ -116,48 +129,71 @@ fun HeroesBottomBar(viewModel: HeroesViewModel, modifier: Modifier) {
                 Column(
                     modifier = Modifier
                         .fillMaxHeight()
-                        .padding(top = 60.dp, start = 20.dp)
+                        .padding(top = 20.dp, start = 20.dp)
                 )
                 {
+                    Spacer(modifier = modifier.height(10.dp))
                     Text(
                         text = "Accumulated HealthPoints : ".plus(healthPoints.value!!.health.toString()),
                         style = MaterialTheme.typography.titleSmall
                     )
+                    Spacer(modifier = modifier.height(10.dp))
                     Text(
                         text = "Week count : ".plus(weekNumber.value),
                         style = MaterialTheme.typography.titleSmall
                     )
+                    Spacer(modifier = modifier.height(10.dp))
+
                     Text(
                         text = "Gold to Pay : ".plus(goldToPay.value),
                         style = MaterialTheme.typography.titleSmall
                     )
-                }
-                Spacer(modifier = Modifier.weight(1f))
-                Column(
-                    modifier = Modifier
-                        .fillMaxHeight()
-                        .padding(top = 60.dp, end = 3.dp)
-                )
-                {
-                    Spacer(modifier = Modifier.weight(.6f))
-                    Button(onClick =
-                    {
-                        weekNumber.value++
-                        if (weekNumber.value == USELESS_WEEK_VALUE) {
-                            weekNumber.value = START_WEEK_VALUE
+                    Spacer(modifier = modifier.height(10.dp))
+
+                    Row(Modifier.fillMaxWidth()) {
+                        Button(
+                            onClick =
+                            {
+                                viewModel.representCheckedMonsterList()
+                                viewModel.representCountedHealth(Week(weekNumber = weekNumber.value))
+                                viewModel.representTotalGold(
+                                    checkedMonsters.value!!,
+                                    Week(weekNumber.value)
+                                )
+
+                            },
+                            modifier = modifier.padding(start = 5.dp)
+                        ) {
+                            Text(text = "Calculate")
                         }
-                    }) {
-                        Text(text = "Add week")
+                        Spacer(modifier = Modifier.weight(1f))
+                        Button(
+                            onClick =
+                            {
+                                weekNumber.value++
+                                if (weekNumber.value == USELESS_WEEK_VALUE) {
+                                    weekNumber.value = START_WEEK_VALUE
+                                }
+                            },
+                            modifier = modifier.padding(end = 5.dp)
+                        ) {
+                            Text(text = "Add week")
+                        }
                     }
-                    Spacer(modifier = Modifier.weight(.3f))
+
                 }
+
+
             }
-
-
         }
     }
-
 }
+
+
+
+
+
+
 
 
 
