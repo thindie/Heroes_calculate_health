@@ -54,8 +54,8 @@ fun Heroes(
                         viewModel,
                         currentMonsterList,
                         modifier = Modifier.heightIn(
-                             max = if (needToBeSmaller.value) 560.dp.minus(180.dp) else 530.dp ,
-                             min = if (needToBeSmaller.value) 360.dp.minus(180.dp) else 330.dp
+                             max = if (needToBeSmaller.value) 620.dp.minus(180.dp) else 570.dp ,
+                             min = if (needToBeSmaller.value) 460.dp.minus(180.dp) else 430.dp
                             )
                      )
 
