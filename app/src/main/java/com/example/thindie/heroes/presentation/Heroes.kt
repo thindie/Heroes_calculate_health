@@ -2,11 +2,7 @@ package com.example.thindie.heroes.presentation
 
 
 import android.annotation.SuppressLint
-import android.util.Log
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.*
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ShapeDefaults
 import androidx.compose.material3.Surface
@@ -31,8 +27,7 @@ fun Heroes(
     HeroesTheme {
         val showFractionsRow = viewModel.representFractionRow().observeAsState()
         val currentMonsterList = viewModel.representCurrentMonsterList.observeAsState()
-        val needToBeSmaller = rememberSaveable { mutableStateOf(false) }.apply { Log.d("EXPANDED", "Clcik")}
-
+        val needToBeSmaller = rememberSaveable { mutableStateOf(false) }
         Surface(
             color = MaterialTheme.colorScheme.surface,
             contentColor = MaterialTheme.colorScheme.onBackground,
@@ -50,18 +45,20 @@ fun Heroes(
                 )
                 HeroesControlTab(viewModel = viewModel)
 
-                    MonsterColumn(
-                        viewModel,
-                        currentMonsterList,
-                        modifier = Modifier.heightIn(
-                             max = if (needToBeSmaller.value) 620.dp.minus(180.dp) else 570.dp ,
-                             min = if (needToBeSmaller.value) 460.dp.minus(180.dp) else 430.dp
-                            )
-                     )
+                val expander = if (needToBeSmaller.value) {
+                    Modifier.padding(bottom = 200.dp)
+                } else {
+                    Modifier.fillMaxHeight(0.95f)
+                }
+                MonsterColumn(
+                    viewModel,
+                    currentMonsterList,
+                    modifier = expander
+                )
 
                 HeroesBottomBar(
                     viewModel = viewModel,
-                    expandedInBottomBar = {boolean : Boolean -> needToBeSmaller.value = boolean },
+                    expandedInBottomBar = { boolean: Boolean -> needToBeSmaller.value = boolean },
                     modifier = modifier
                 )
             }
