@@ -1,7 +1,6 @@
 package com.example.thindie.heroes.presentation
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -76,6 +75,7 @@ class HeroesViewModel(application: Application) : AndroidViewModel(application) 
         when (paramOrMonsterName) {
 
             SEARCH_BY_LEVEL -> {
+
                 incomingList?.forEach { monster ->
                     if (monster.level == incomingMonster?.level)
                         searchingList.add(monster)
@@ -127,8 +127,7 @@ class HeroesViewModel(application: Application) : AndroidViewModel(application) 
         }
 
         _representCurrentMonsterList.value = searchingList.toList()
-        Log.d("SERVICE", "viewModel UserBehav")
-        Log.d("SERVICE", checkedMonsterList.toString())
+
     }
 
     private fun representGoldToZero() {

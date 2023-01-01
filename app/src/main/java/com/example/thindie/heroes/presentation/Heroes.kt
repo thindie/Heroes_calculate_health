@@ -46,9 +46,9 @@ fun Heroes(
                 HeroesControlTab(viewModel = viewModel)
 
                 val expander = if (needToBeSmaller.value) {
-                    Modifier.padding(bottom = 200.dp)
+                    Modifier.padding(bottom = 170.dp)
                 } else {
-                    Modifier.fillMaxHeight(0.95f)
+                    Modifier.fillMaxHeight(0.91f)
                 }
                 MonsterColumn(
                     viewModel,

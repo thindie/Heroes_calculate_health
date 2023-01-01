@@ -87,7 +87,7 @@ fun HeroesBottomBar(
                     text = " Count Health ",
                     style = MaterialTheme.typography.titleSmall,
                     modifier = Modifier
-                        .padding(top = 10.dp, bottom = 10.dp, start = 10.dp, end = 10.dp)
+                        .padding(top = 10.dp,   start = 10.dp, end = 10.dp)
                         .clip(ShapeDefaults.ExtraLarge)
                         .align(Alignment.CenterVertically)
                         .border(border = BorderStroke(Dp.Hairline,MaterialTheme.colorScheme.onSurfaceVariant))
@@ -169,6 +169,7 @@ fun HeroesBottomBar(
 
                             },
                             modifier = modifier.padding(start = 5.dp)
+                                .scale(0.9f)
                         ) {
                             Text(text = "Calculate")
                         }
@@ -182,6 +183,7 @@ fun HeroesBottomBar(
                                 }
                             },
                             modifier = modifier.padding(end = 5.dp)
+                                .scale(0.9f)
                         ) {
                             Text(text = "Add week")
                         }
