@@ -5,6 +5,8 @@ import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.spring
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
@@ -17,7 +19,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.example.thindie.heroes.domain.START_WEEK_VALUE
 import com.example.thindie.heroes.domain.USELESS_WEEK_VALUE
@@ -48,9 +52,9 @@ fun HeroesBottomBar(
     val additionPadding by animateDpAsState(
         targetValue =
         if (expanded.value) {
-            250.dp
+            350.dp
         } else {
-            40.dp
+            50.dp
         },
 
         animationSpec = spring(
@@ -69,7 +73,7 @@ fun HeroesBottomBar(
     Surface(
         color = if (expanded.value) changingColorIn.value else changingColorOut.value,
         modifier = modifier
-            .requiredHeightIn(120.dp, max = additionPadding)
+            .requiredHeightIn(min = additionPadding, max = additionPadding)
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -77,14 +81,16 @@ fun HeroesBottomBar(
 
         ) {
 
-            Spacer(modifier = Modifier.weight(0.3f))
             if (!expanded.value) {
+                Spacer(modifier = Modifier.weight(0.3f))
                 Text(
-                    text = "Count Health",
+                    text = " Count Health ",
                     style = MaterialTheme.typography.titleSmall,
                     modifier = Modifier
-                        .padding(top = 1.dp, bottom = 2.dp)
+                        .padding(top = 10.dp, bottom = 10.dp, start = 10.dp, end = 10.dp)
+                        .clip(ShapeDefaults.ExtraLarge)
                         .align(Alignment.CenterVertically)
+                        .border(border = BorderStroke(Dp.Hairline,MaterialTheme.colorScheme.onSurfaceVariant))
                         .clickable {
                             viewModel.representCheckedMonsterList()
                             viewModel.representCountedHealth(Week(weekNumber = weekNumber.value))
@@ -99,7 +105,7 @@ fun HeroesBottomBar(
                 )
             }
 
-            Spacer(modifier = Modifier.weight(0.3f))
+
         }
         if (expanded.value) {
             Row {
