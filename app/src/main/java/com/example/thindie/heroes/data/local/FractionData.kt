@@ -20,7 +20,7 @@ class FractionData(private  val fileReader: RawResourceReader) {
         }
 
         Log.d("Service", "FractionData")
-        return monsterList
+        return this@FractionData.monsterList
     }
 
     private fun detectFraction(monster: Monster): Fraction {
@@ -35,6 +35,7 @@ class FractionData(private  val fileReader: RawResourceReader) {
     }
 
     fun representFraction(fraction: Fraction): List<Monster> {
+        Log.d("Service", "Rep.Fraction")
         val fractionList: MutableList<Monster> = mutableListOf()
         when (fraction) {
             Fraction.CASTLE -> {

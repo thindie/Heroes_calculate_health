@@ -1,8 +1,7 @@
 package com.example.thindie.heroes.presentation.ui.theme.composables
 
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.*
@@ -17,7 +16,6 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.unit.dp
 import com.example.thindie.heroes.presentation.HeroesViewModel
-
 import com.example.thindie.heroes.presentation.ui.theme.shapes
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
@@ -25,22 +23,27 @@ import com.example.thindie.heroes.presentation.ui.theme.shapes
 fun HeroesSearchBar(viewModel: HeroesViewModel) {
     val keyboardController = LocalSoftwareKeyboardController.current
     val enteredTextOnSearchBar = rememberSaveable { mutableStateOf("") }
-    val allMonsters = viewModel.representTotalMonsterList().observeAsState()
+    val clickedOnSearch = rememberSaveable { mutableStateOf(false) }
+
+    val allMonsters = viewModel.representAllMonsterList.observeAsState()
+
 
     Surface(
         color = MaterialTheme.colorScheme.onSecondary,
+        shape = shapes.extraLarge,
         modifier = Modifier
             .padding(start = 20.dp, top = 54.dp, end = 20.dp, bottom = 20.dp)
             .scale(0.8f)
-            .fillMaxWidth(),
-        shape = shapes.extraLarge,
-    ) {
+            .height(50.dp)
+            .requiredWidthIn(min = 400.dp)
 
+    )
+    {
         TextField(
             value = enteredTextOnSearchBar.value,
-            onValueChange = { string -> enteredTextOnSearchBar.value = string;
-                            enteredTextOnSearchBar.value =""
-                            },
+            onValueChange = { string ->
+                enteredTextOnSearchBar.value = string
+            },
             leadingIcon = {
                 Icon(
                     imageVector = Icons.Default.Search,
@@ -56,6 +59,8 @@ fun HeroesSearchBar(viewModel: HeroesViewModel) {
                                     allMonsters.value
                                 )
                                 keyboardController!!.hide()
+                                enteredTextOnSearchBar.value = ""
+                                clickedOnSearch.value = !clickedOnSearch.value
                             }
                         )
                         .scale(1.3f)
@@ -64,14 +69,12 @@ fun HeroesSearchBar(viewModel: HeroesViewModel) {
             },
             colors = TextFieldDefaults.textFieldColors(MaterialTheme.colorScheme.onPrimaryContainer),
             placeholder = {
-                Text(text = "Search from all creatures..",
+                Text(
+                    text = "Search from all creatures..",
                     style = MaterialTheme.typography.titleLarge
-                    )
+                )
             },
             textStyle = MaterialTheme.typography.titleLarge
-            )
-
-
+        )
     }
-
 }
